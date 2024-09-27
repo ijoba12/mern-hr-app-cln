@@ -4,6 +4,9 @@ import taskboardImg from './assets/taskboardimg.svg';
 import leaveboardImg from "./assets/leaveboardimg.svg";
 import payrollImg from "./assets/payrollimg.svg";
 import settingsImg from "./assets/settingsimg.svg";
+import totalEmployeesImg from "./assets/allEmployees.svg";
+import totalTasksImg from "./assets/allTasks.svg";
+import totalLeaves from "./assets/allLeaves.svg";
 
 export const sidebarLinks = [
   {
@@ -43,3 +46,25 @@ export const sidebarLinks = [
     path: "/admin-dashboard/settings",
   },
 ];
+
+
+export const eventLenght = [
+  {
+    id:1,
+    title:"Total Employees",
+    count:24,
+    img:totalEmployeesImg
+  },
+  {
+    id:2,
+    title:"Total Tasks",
+    count:107,
+    img:totalTasksImg
+  },
+  {
+    id:3,
+    title:"Current Leaves",
+    count:15,
+    img:totalLeaves
+  },
+]

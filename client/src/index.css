@@ -1,18 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
-:root{
-  --ff-bricolage-grotesque:"Bricolage Grotesque", sans-serif;
-  --ff-inter:"Inter", sans-serif;
-  --auth-bgrc: #3439CA;
-   font-synthesis: none;
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
+:root {
+  --ff-bricolage-grotesque: "Bricolage Grotesque", sans-serif;
+  --ff-inter: "Inter", sans-serif;
+  --ff-DM-sans: "DM Sans", sans-serif;
+  --auth-bgrc: #3439ca;
+  font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a{
-  text-decoration: none;
+body {
+  max-width: 1536px !important;
+  margin: 0 auto !important;
+  overflow-x: hidden;
 }
 
-
+/* body{
+  max-width: 100%;
+  margin: 0 auto;
+  overflow-x: hidden;
+} */
+a {
+  text-decoration: none;
+  color: rgba(52, 53, 54, 1);
+}

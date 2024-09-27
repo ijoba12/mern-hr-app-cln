@@ -1,22 +1,24 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route,Navigate } from "react-router-dom";
 import SignIn from "./auth/SignIn";
 import ForgotPassword from "./auth/ForgotPassword";
 import ResetPassword from "./auth/ResetPassword";
-import AdminDashboard from "./pages/admin-dashboard/AdminDashboard";
-import AdminSummary from "./pages/admin-dashboard/AdminSummary";
+import AdminDashboard from "./layout/AdminDashboard";
+import AdminSummary from "./componenets/AdminSummary";
 import Employees from "./pages/admin-dashboard/Employees";
 import TaskBoard from "./pages/admin-dashboard/TaskBoard";
 import LeaveBoard from "./pages/admin-dashboard/LeaveBoard";
 import PayRoll from "./pages/admin-dashboard/PayRoll";
 import Settings from "./pages/admin-dashboard/Settings";
+import Error from "./pages/Error";
+
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/"  element={<AdminDashboard/>}/>
+          <Route path="/"  element={<Navigate to="/admin-dashboard" />}/>
           <Route path="/auth/sign-in" element={<SignIn />} />
           <Route path="/auth/forgot-password" element={<ForgotPassword/>}/>
           <Route path="/auth/reset-password" element={<ResetPassword/>}/>
@@ -28,6 +30,7 @@ function App() {
             <Route path="/admin-dashboard/payroll" element={<PayRoll/>}/>
             <Route path="/admin-dashboard/settings" element={<Settings/>}/>
           </Route>
+          <Route path="*" element={<Error/>}/>
         </Routes>
       </BrowserRouter>
     </>
