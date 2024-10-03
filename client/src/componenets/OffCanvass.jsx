@@ -51,7 +51,7 @@ const OffCanvass = ({ name, ...props }) => {
               {/* =========================== */}
               <div className="d-flex flex-column gap-4 admin-dashboard-section-1-div-2">
                 <h2>MAIN MENU</h2>
-                <div className="ms-3">
+                <div className="ms-3 sidebar">
                   {sidebarLinks.map((sidebarLink) => {
                     const { id, path, Icon, name } = sidebarLink;
                     return (

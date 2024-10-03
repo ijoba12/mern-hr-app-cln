@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { sidebarLinks } from "../db";
 import appLogo from "../assets/nav-logo.png";
 import arrowUp from "../assets/arrow-up-logo.svg";
@@ -8,9 +8,10 @@ import "../styles/AdminDashboard.css";
 import Navbar from "./Navbar";
 
 const AdminDashboard = () => {
+  const [role,setRole] = useState("admin") 
   return (
     <>
-      <main className="container-fluid  admin-dashoard">
+      <main className="container-fluid  admin-dashoard ">
         {/* main-section */}
         <section className="admin-dashoard-main">
           {/* section-1 */}
@@ -43,7 +44,7 @@ const AdminDashboard = () => {
             {/* =========================== */}
             <div className="d-flex flex-column gap-4 admin-dashboard-section-1-div-2">
               <h2>MAIN MENU</h2>
-              <div className="ms-3">
+              <div className="ms-3 sidebar">
                 {sidebarLinks.map((sidebarLink) => {
                   const { id, path, Icon, name } = sidebarLink;
                   return (

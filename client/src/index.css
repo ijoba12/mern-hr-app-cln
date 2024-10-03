@@ -14,13 +14,13 @@
 }
 
 body {
-  max-width: 1536px !important;
+  max-width: 100% !important;
   margin: 0 auto !important;
   overflow-x: hidden;
 }
 
 /* body{
-  max-width: 100%;
+  max-width: 1536px;
   margin: 0 auto;
   overflow-x: hidden;
 } */
@@ -28,3 +28,5 @@ a {
   text-decoration: none;
   color: rgba(52, 53, 54, 1);
 }
+
+

@@ -1,12 +1,13 @@
 import React from "react";
 import "../styles/AdminSummary.css";
 import { eventLenght } from "../db";
+import TaskTable from "./TaskTable";
 
 const AdminSummary = () => {
   return (
     <>
-      <main className="containe pt-5 admin-summary-wrapper">
-        <section className=" admin-summary-section-1 pt-1">
+      <main className="pt-5 admin-summary-wrapper">
+        <section className=" admin-summary-section-1 pt-1 ">
           <h1 className="admin-summary-section-1-header">Dashboard</h1>
           <div className="admin-summary-section-1-div justify-content-between align-items-center pt-5">
             {eventLenght.map((event) => {
@@ -19,13 +20,16 @@ const AdminSummary = () => {
                       <h1> {count} </h1>
                     </div>
                     <div>
-                      <img src={img} alt="event-img" />
+                      <img src={img} alt="event-img" loading="lazy" />
                     </div>
                   </div>
                 </div>
               );
             })}
           </div>
+        </section>
+        <section>
+          <TaskTable/>
         </section>
       </main>
     </>

@@ -28,7 +28,6 @@ const Navbar = () => {
             name=""
             id=""
             placeholder="Search"
-            
           />
           <img
             className="position-absolute top-50 end-0 translate-middle-y pe-2"
@@ -37,22 +36,20 @@ const Navbar = () => {
           />
         </form>
         <div className="nav-div d-flex gap-4 align-items-center">
-          <div>
-            <img
-              src={notificationImg}
-              alt="notifiction-image"
-              className="d-none d-lg-block"
-            />
+          <div className="d-none d-lg-block">
+            <img src={notificationImg} alt="notifiction-image" />
           </div>
-          <div>
-            <img
-              src={messageImg}
-              alt="messageImg-image"
-              className="d-none d-lg-block"
-            />
+          <div className="d-none d-lg-block">
+            <img src={messageImg} alt="messageImg-image" />
           </div>
           <div className="d-flex gap-2 align-items-center">
             <div>
+              <img
+                src={searchImg}
+                alt="searchImg-image"
+                className="me-3 d-md-none"
+                role="button"
+              />
               <img
                 src={ladyProfilePic}
                 alt="ladyProfilePic-image"
@@ -60,13 +57,19 @@ const Navbar = () => {
               />
             </div>
             {/* <h4 className="d-none d-lg-block">Eggys Eggys</h4> */}
-            <Dropdown className="d-none d-lg-block" >
-              <Dropdown.Toggle variant="" id="dropdown-basic " className="drop-down-header">
+            <Dropdown className="d-none d-lg-block">
+              <Dropdown.Toggle
+                variant=""
+                id="dropdown-basic"
+                className="drop-down-header"
+              >
                 Eggys Eggys
               </Dropdown.Toggle>
 
-              <Dropdown.Menu >
-                <Dropdown.Item href="#/action-1"className="text-danger" >Log Out</Dropdown.Item>
+              <Dropdown.Menu>
+                <Dropdown.Item href="#/action-1" className="text-danger">
+                  Log Out
+                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
             {/* <img

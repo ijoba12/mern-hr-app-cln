@@ -49,3 +49,21 @@
   }
 }
 
+@media (min-width: 766px) and (max-width: 768px) {
+  nav{
+    width: 88%;
+  }
+}
+@media (min-width: 769px) and (max-width: 883px) {
+  nav{
+    width: 94%;
+  }
+}
+@media (min-width: 883.1px) and (max-width: 884px) {
+  nav{
+    width: 100%;
+  }
+}
+
+
+
