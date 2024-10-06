@@ -16,7 +16,7 @@ const Navbar = () => {
   }
   return (
     <>
-      <nav className="d-flex justify-content-between gap-5 sticky-top bg-light">
+      <nav className="d-flex justify-content-between gap-5 sticky-top bg-light main-nav">
         <div className="d-md-none">
           {["start"].map((placement, idx) => (
             <OffCanvass key={idx} placement={placement} name={placement} />

@@ -173,3 +173,43 @@ export const taskBoardTableData = [
     action:"Planned"
   }
 ]
+
+
+export const allEmployeesList = [
+  {
+    id:1,
+    name:"Raheem Sterling",
+    img:photo1,
+    email:"raheem@tmt.com",
+    team:"Product",
+    supervisor:"Eric Ten-Hagg",
+    status:"Remote"
+  },
+  {
+    id:2,
+    name:"Eggys Eggys",
+    img:photo2,
+    email:"eggys@tmt.com",
+    team:"Product",
+    supervisor:"Joshua Zirkzee",
+    status:"On-Site"
+  },
+  {
+    id:3,
+    name:"Chukwudi Tobiloba",
+    img:photo3,
+    email:"chtobiloba@tmt.com",
+    team:"Marketing",
+    supervisor:"Bukayo Saka",
+    status:"On-Site"
+  },
+  {
+    id:4,
+    name:"Olawole Anita",
+    img:photo4,
+    email:"olawo999@tmt.com",
+    team:"Adminstration",
+    supervisor:"Joshua Zirkzee",
+    status:"Hybrid"
+  },
+]

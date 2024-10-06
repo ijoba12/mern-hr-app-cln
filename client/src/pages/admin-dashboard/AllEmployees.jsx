@@ -1,10 +1,10 @@
 import React from 'react'
-import TaskTable from '../../componenets/TaskTable'
+import EmployeeTable from '../../componenets/EmployeeTable'
 
 const AllEmployees = () => {
   return (
     <>
-    <TaskTable/>
+   <EmployeeTable/>
     </>
    
   )

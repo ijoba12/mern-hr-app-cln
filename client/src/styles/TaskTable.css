@@ -77,10 +77,10 @@
 
 
 @media (min-width: 766px) and (max-width: 991px) {
-    .dd {
+    .task-table {
       overflow-x: scroll;
       width: 500px;
       margin-left: 0;
     }
-  }
+}
 

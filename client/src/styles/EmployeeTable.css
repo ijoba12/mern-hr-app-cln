@@ -1,0 +1,73 @@
+.employee-table-wrapper{
+    font-family: var(--ff-inter);
+    border: 1px solid rgba(241, 242, 243, 1);
+    border-radius: 14px;
+}
+
+.employee-table-container {
+    padding: 28px 17px 28px 17px;
+  }
+
+  .employee-table-wrapper-h5{
+    font-weight: 500;
+    font-size: 20px;
+    color: rgba(41, 41, 41, 1);
+}
+
+.employee-table-wrapper-head{
+    background-color: rgba(247, 249, 251, 1);
+}
+
+.employee-table-data{
+      font-weight: 500;
+      font-size: 16px;
+      color: rgba(41, 41, 41, 1);
+
+  }
+
+
+
+  .employee-table-blue{
+    background-color: rgba(226, 227, 248, 1);
+    color: rgba(52, 57, 202, 1);
+    border-radius: 50px;
+    text-align: center;
+    width: 83px;
+    height: 27px;
+    font-weight: 400;
+    font-size: 16px;
+    
+}
+
+
+  .employee-table-orange{
+    background-color: rgba(246, 236, 220, 1);
+    color: rgba(242, 155, 7, 1);
+    border-radius: 50px;
+    text-align: center;
+    width: 90px;
+    height: 27px;
+    font-weight: 400;
+    font-size: 16px;
+    
+}
+
+  .employee-table-green{
+    background-color: rgba(231, 249, 243, 1);
+    color: rgba(13, 128, 93, 1);
+    border-radius: 50px;
+    text-align: center;
+    width: 90px;
+    height: 27px;
+    font-weight: 400;
+    font-size: 16px;
+    
+}
+
+@media (min-width: 766px) and (max-width: 991px) {
+  .employee-table {
+    overflow-x: scroll;
+    width: 500px;
+    margin-left: 0;
+  }
+}

@@ -7,7 +7,7 @@ const TaskTable = () => {
   return (
     <main className="my-5 task-table-wrapper task-table-container">
       <h1 className="pb-4">Taskboard</h1>
-      <div className="dd">
+      <div className="task-table">
         <Table role="button" hover responsive>
           <thead className="task-table-wrapper-head">
             <tr>
