@@ -8,9 +8,11 @@ import "../styles/Navbar.css";
 import AuthDropDown from "../componenets/AuthDropDown";
 import OffCanvass from "../componenets/OffCanvass";
 import Dropdown from "react-bootstrap/Dropdown";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isTrue, setIsTrue] = useState(false);
+  let navigate = useNavigate()
   function handleReveal() {
     isTrue ? setIsTrue(false) : setIsTrue(true);
   }
@@ -67,7 +69,7 @@ const Navbar = () => {
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item href="#/action-1" className="text-danger">
+                <Dropdown.Item href="#" className="text-danger" onClick={()=>navigate("/auth/sign-in")}>
                   Log Out
                 </Dropdown.Item>
               </Dropdown.Menu>

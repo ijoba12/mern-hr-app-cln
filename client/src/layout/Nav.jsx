@@ -13,7 +13,7 @@ const Nav = () => {
             <li>
               <NavLink to="/admin-dashboard/employees/personal-info" end>
                 {({ isActive }) => (
-                  <span className={`${isActive ? "is-active-link" : ""}`}>
+                  <span className={`${isActive ? "is-active-link" : ""} pb-3`}>
                     Personal Information
                   </span>
                 )}
@@ -22,7 +22,7 @@ const Nav = () => {
             <li>
               <NavLink to="/admin-dashboard/employees/personal-info/professional">
                 {({ isActive }) => (
-                  <span className={`${isActive ? "is-active-link" : ""}`}>
+                  <span className={`${isActive ? "is-active-link" : ""} pb-3`}>
                     Professional
                   </span>
                 )}
@@ -31,7 +31,7 @@ const Nav = () => {
             <li>
               <NavLink to="/admin-dashboard/employees/personal-info/salary">
                 {({ isActive }) => (
-                  <span className={`${isActive ? "is-active-link" : ""}`}>
+                  <span className={`${isActive ? "is-active-link" : ""} pb-3`}>
                     Salary
                   </span>
                 )}
@@ -40,7 +40,7 @@ const Nav = () => {
             <li>
               <NavLink to="/admin-dashboard/employees/personal-info/user-account">
                 {({ isActive }) => (
-                  <span className={`${isActive ? "is-active-link" : ""}`}>
+                  <span className={`${isActive ? "is-active-link" : ""} pb-3`}>
                     User Account
                   </span>
                 )}

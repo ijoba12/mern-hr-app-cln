@@ -24,7 +24,7 @@ const Employees = () => {
                     <h6
                       className={`pt-3 nav-link-header d-flex align-items-center gap-2 mb-3 ${
                         isActive ? "is-active" : ""
-                      }`}
+                      } pb-3`}
                     >
                       All Employees
                     </h6>
@@ -35,7 +35,7 @@ const Employees = () => {
                     <h6
                       className={`pt-3 nav-link-header d-flex align-items-center gap-2 mb-3 ${
                         isActive ? "is-active" : ""
-                      }`}
+                      } pb-3`}
                     >
                       Teams
                     </h6>
