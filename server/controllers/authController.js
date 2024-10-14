@@ -1,12 +1,12 @@
 import USER from "../models/userModel.js";
 import { sendWelcomeEmail } from "../emails/emailHandlers.js";
 import fs from "fs";
-import { v2 as cloudinary } from 'cloudinary';
+import { v2 as cloudinary } from "cloudinary";
 
 export const signup = async (req, res) => {
-  // if (req.user.role !== 'admin') {
-  //   return res.status(403).json({ success: false, errMsg: "Access denied. Admins only." });
-  // }
+  if (req.user.role !== 'admin' && req.user.role !== 'super-admin') {
+    return res.status(403).json({ success: false, errMsg: "Access denied. Admins only." });
+  }
   const {
     firstName,
     lastName,
@@ -46,12 +46,10 @@ export const signup = async (req, res) => {
       !password ||
       !confirmPassword
     ) {
-      res
-        .status(400)
-        .json({
-          success: false,
-          errMsg: "all fields are required to register...",
-        });
+      res.status(400).json({
+        success: false,
+        errMsg: "all fields are required to register...",
+      });
       return;
     }
     if (password !== confirmPassword) {
@@ -66,9 +64,11 @@ export const signup = async (req, res) => {
       res.status(400).json({ success: false, errMsg: "Email already exists" });
       return;
     }
-    // 
+    //
     if (!req.files || !req.files.profileImage) {
-      return res.status(400).json({ success: false, errMsg: "Profile image is required" });
+      return res
+        .status(400)
+        .json({ success: false, errMsg: "Profile image is required" });
     }
 
     const result = await cloudinary.uploader.upload(
@@ -84,13 +84,11 @@ export const signup = async (req, res) => {
     fs.unlinkSync(req.files.profileImage.tempFilePath);
 
     const user = await USER.create({ ...req.body });
-    res
-      .status(201)
-      .json({
-        success: true,
-        message: "registration successful welcome mail has also been sent",
-        user,
-      });
+    res.status(201).json({
+      success: true,
+      message: "registration successful welcome mail has also been sent",
+      user,
+    });
     const clientUrl = process.env.CLIENT_URL;
 
     try {
@@ -108,6 +106,48 @@ export const signup = async (req, res) => {
   }
 };
 
-export const signIn = async(req,res)=>{
-  
-}
+export const signIn = async (req, res) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    res.status(400).json({
+      success: false,
+      errMsg: "all fields are required to sign in...",
+    });
+    return;
+  }
+  try {
+    // finding a registered email address
+    const user = await USER.findOne({ email });
+    if (!user) {
+      res.status(404).json({ success: false, errMsg: "user not found" });
+      return;
+    }
+    // comparing password and validating password
+    const isMatch = await user.comparePassword(password);
+    if (!isMatch) {
+      res
+        .status(404)
+        .json({ success: false, errMsg: "Email or Password is Incorrect" });
+      return;
+    }
+    // generating token
+
+    const token = await user.generateToken();
+    // console.log(token);
+    if (token) {
+      res.status(201).json({
+        success: true,
+        message: "logged in",
+        user: {
+          role: user.role,
+          email: user.email,
+          token,
+        },
+      });
+      return;
+    }
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json(error.message);
+  }
+};
