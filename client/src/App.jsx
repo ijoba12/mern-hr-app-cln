@@ -29,7 +29,7 @@ function App() {
           <Route path="/" element={<Navigate to="/admin-dashboard" />} />
           <Route path="auth/sign-in" element={<SignIn />} />
           <Route path="auth/forgot-password" element={<ForgotPassword />} />
-          <Route path="auth/reset-password" element={<ResetPassword />} />
+          <Route path="auth/reset-password/:resetToken" element={<ResetPassword />} />
           <Route path="admin-dashboard" element={<AdminDashboard />}>
             <Route index element={<AdminSummary />} />
             {/* employees */}

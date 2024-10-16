@@ -1,8 +1,10 @@
 import USER from "../models/userModel.js";
-import { sendWelcomeEmail } from "../emails/emailHandlers.js";
+import { sendWelcomeEmail,sendForgotPasswordMail } from "../emails/emailHandlers.js";
 import fs from "fs";
 import { v2 as cloudinary } from "cloudinary";
+import crypto from "crypto"
 
+// sign-up
 export const signup = async (req, res) => {
   if (req.user.role !== 'admin' && req.user.role !== 'super-admin') {
     return res.status(403).json({ success: false, errMsg: "Access denied. Admins only." });
@@ -64,6 +66,11 @@ export const signup = async (req, res) => {
       res.status(400).json({ success: false, errMsg: "Email already exists" });
       return;
     }
+    const existingNumber = await USER.findOne({mobileNumber});
+    if(existingNumber){
+      res.status(400).json({ success: false, errMsg: "phone number already exists"});
+      return;
+    }
     //
     if (!req.files || !req.files.profileImage) {
       return res
@@ -105,7 +112,7 @@ export const signup = async (req, res) => {
     res.status(500).json(error.message);
   }
 };
-
+// sign-in
 export const signIn = async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
@@ -141,6 +148,7 @@ export const signIn = async (req, res) => {
         user: {
           role: user.role,
           email: user.email,
+          firstName:user.firstName,
           token,
         },
       });
@@ -151,3 +159,70 @@ export const signIn = async (req, res) => {
     res.status(500).json(error.message);
   }
 };
+
+// forgot password
+export const forgotPassword = async(req,res)=>{
+  const {email} = req.body;
+  try {
+    if(!email){
+      res.status(400).json({success:false,errMsg:"input field can not be empty"});
+      return;
+    }
+    const user = await USER.findOne({email});
+    if(!user){
+      res.status(404).json({success:false,errMsg:"email not found"})
+      return
+    }
+    const resetToken = user.getResetPasswordToken()
+    await user.save()
+    res.status(201).json({
+      success: true,
+      message: "mail sent",
+    });
+    const resetUrl = process.env.CLIENT_URL_RESET + resetToken;
+   
+    try {
+      await sendForgotPasswordMail({
+        to: user.email,
+        firstName: user.firstName,
+        resetUrl,
+      })
+      return
+    } catch (error) {
+      user.getResetPasswordToken = undefined;
+      user.getResetPasswordExpire = undefined;
+      await user.save();
+      return res.status(500).json({errMsg:"Email couldnt be sent",error})
+    }
+  } catch (error) {
+    res.json(error.message)
+  }
+}
+
+ // reset password ftn
+ export const resetPassword = async (req,res)=>{
+  const resetPasswordToken = crypto.createHash("sha256").update(req.params.resetToken).digest("hex");
+  try {
+    const user = await USER.findOne({
+      resetPasswordToken,
+      resetPasswordExpire:{$gt:Date.now()}
+      // resetPasswordExpire:{$gt:Date('2024-12-20')}
+
+    })
+    if(!user){
+      return res.status(400).json({status:false,message:"invalid Reset Token"})
+    }
+    user.password = req.body.password;
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpire = undefined;
+
+    await user.save();
+    res.status(201).json({success:true,message:"Password Reset Successfull"})
+    
+  } catch (error) {
+    res.status(500).json(error.message)
+    
+  }
+}
+
+

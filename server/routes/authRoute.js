@@ -1,12 +1,17 @@
 import express from "express";
 const router = express.Router();
-import { signIn, signup } from "../controllers/authController.js";
+import { forgotPassword, resetPassword, signIn, signup } from "../controllers/authController.js";
 import restrict from "../middleware/isAdmin.js";
 import { auth } from "../middleware/auth.js";
 
 
-
-router.post("/signup",auth, restrict("admin"),signup);
+// sign up route
+router.post("/signup",auth,restrict("admin", "super-admin"),signup);
 // router.post("/signup",signup);
-router.post("/signin" , signIn)
+// sign in route
+router.post("/signin" , signIn);
+// forgot password route
+router.post("/forgotpassword",forgotPassword)
+// reset password route
+router.put("/resetpassword/:resetToken", resetPassword)
 export default router

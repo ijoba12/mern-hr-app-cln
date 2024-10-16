@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import validator from "validator";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import crypto from "crypto";
 
 const Schema = mongoose.Schema;
 
@@ -20,7 +21,7 @@ const userSchema = new Schema({
     type: String,
     trim: true,
     required: [true, "Please enter a phone number"],
-    unique: [true, "mobile Number already in exist"],
+    unique: [true, "mobile number already exist"],
     maxlength: [11, "Maximum length must be 11"],
   },
   email: {
@@ -105,6 +106,8 @@ const userSchema = new Schema({
       }
     },
   },
+  resetPasswordToken:String,
+  resetPasswordExpire:Date
 },{timestamps:true});
 
 // hashing password
@@ -128,6 +131,14 @@ userSchema.methods.generateToken = async function(params){
     });
 
   return token;
+}
+
+// generating reset password token
+userSchema.methods.getResetPasswordToken = function(){
+  const resetToken = crypto.randomBytes(20).toString("hex");
+  this.resetPasswordToken = crypto.createHash("sha256").update(resetToken).digest("hex");
+  this.resetPasswordExpire = Date.now() + 10 * (60 * 1000);
+  return resetToken;
 }
 
 const USER = mongoose.model("user", userSchema);
