@@ -37,8 +37,6 @@ export function createWelcomeEmailTemplate(firstName, clientUrl) {
   `;
 }
 
-
-
 export function resetPasswordEmailTemplate(firstName, resetUrl) {
   return `
   <!DOCTYPE html>
@@ -69,4 +67,3 @@ export function resetPasswordEmailTemplate(firstName, resetUrl) {
   </html>
   `;
 }
-

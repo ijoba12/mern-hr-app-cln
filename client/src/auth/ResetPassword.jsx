@@ -4,16 +4,27 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import navLogo from "../assets/nav-logo.png";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { resetPwdLinkSchema } from "../utils/ValidationSchema";
 import vissibilityOnIcon from "../assets/visibility_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg";
 import vissibilityOffIcon from "../assets/visibility_off_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg";
 
 const ResetPassword = () => {
   const [isReveal, setIsReveal] = useState(false);
   const [isReveal2, setIsReveal2] = useState(false);
-
-  function handleSignIn(event) {
-    event.preventDefault();
-  }
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    resolver: yupResolver(resetPwdLinkSchema),
+    defaultValues: {
+      password: "",
+      confirmPassword: "",
+    },
+  });
+  async function onSubmit(data) {}
   function toggleReveal() {
     if (isReveal) {
       setIsReveal(false);
@@ -33,7 +44,7 @@ const ResetPassword = () => {
       <main className="main-auth reset-password d-flex justify-content-center align-items-center">
         <Form
           className="reset-password-inner shadow-lg"
-          onSubmit={handleSignIn}
+          onSubmit={handleSubmit(onSubmit)}
         >
           <div className="text-center">
             <div className="d-flex justify-content-center align-items-center gap-2">
@@ -57,8 +68,11 @@ const ResetPassword = () => {
                 className="input"
                 type={isReveal ? "text" : "password"}
                 placeholder="Enter New Password"
+                {...register("password", { required: true })}
               />
-              {/* <p>error</p> */}
+              <span className="text-danger fs-6 text-start fw-bold">
+                {errors.password?.message}
+              </span>{" "}
             </div>
           </Form.Group>
           <Form.Group className="" controlId="formBasicConfirmPassword">
@@ -74,8 +88,11 @@ const ResetPassword = () => {
                 className="input"
                 type={isReveal2 ? "text" : "password"}
                 placeholder="Re-enter Password"
+                {...register("confirmPassword", { required: true })}
               />
-              {/* <p>error</p> */}
+              <span className="text-danger fs-6 text-start fw-bold">
+                {errors.confirmPassword?.message}
+              </span>{" "}
             </div>
           </Form.Group>
           <Button

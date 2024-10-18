@@ -20,6 +20,9 @@ import Professional from "./pages/admin-dashboard/Professional";
 import UserAccount from "./pages/admin-dashboard/UserAccount";
 import NewTeam from "./pages/admin-dashboard/NewTeam";
 import EditTeam from "./pages/admin-dashboard/EditTeam";
+import EmployeeDashboard from "./pages/employee-dashboard/EmployeeDashboard";
+import { Toaster } from 'react-hot-toast';
+
 
 function App() {
   return (
@@ -29,7 +32,10 @@ function App() {
           <Route path="/" element={<Navigate to="/admin-dashboard" />} />
           <Route path="auth/sign-in" element={<SignIn />} />
           <Route path="auth/forgot-password" element={<ForgotPassword />} />
-          <Route path="auth/reset-password/:resetToken" element={<ResetPassword />} />
+          <Route
+            path="auth/reset-password/:resetToken"
+            element={<ResetPassword />}
+          />
           <Route path="admin-dashboard" element={<AdminDashboard />}>
             <Route index element={<AdminSummary />} />
             {/* employees */}
@@ -37,8 +43,8 @@ function App() {
               <Route index element={<Navigate to="allemployees" />} />
               <Route path="allemployees" element={<AllEmployees />} />
               <Route path="teams" element={<Teams />} />
-              <Route path="new-team" element={<NewTeam/>}/>
-                <Route path="edit-team" element={<EditTeam/>}/>
+              <Route path="new-team" element={<NewTeam />} />
+              <Route path="edit-team" element={<EditTeam />} />
             </Route>
             {/* ======= */}
             <Route
@@ -55,9 +61,15 @@ function App() {
             <Route path="payroll" element={<PayRoll />} />
             <Route path="settings" element={<Settings />} />
           </Route>
+          <Route path="employee-dashboard" element={<EmployeeDashboard />}>
+
+            <Route index element={<EmployeeDashboard/>}/>
+          </Route>
           <Route path="*" element={<Error />} />
         </Routes>
+      <Toaster/>
       </BrowserRouter>
+
     </>
   );
 }

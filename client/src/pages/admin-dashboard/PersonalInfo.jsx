@@ -56,7 +56,7 @@ const PersonalInfo = () => {
                   className="mb-3 col-lg-6 ps-0 "
                   controlId="exampleForm.ControlInput1"
                 >
-                  <Form.Label>Mobile Number</Form.Label>
+                  <Form.Label>Date of Birth</Form.Label>
                   <Form.Control type="date" placeholder="Select Date" />
                 </Form.Group>
                 <Form.Group className="mb-3 col-lg-6 ps-0">
@@ -90,27 +90,32 @@ const PersonalInfo = () => {
                   <Form.Control type="text" placeholder="Enter Address" />
                 </Form.Group>
               </div>
-              <div className="">
-                <h3>Thumbnail</h3>
-                <div className="d-flex gap-2 align-items-center">
-                  <img src={exclamationImg} alt="" />
-                  <p className="pt-3">
-                    This image will appear in the explore page, upload a square
-                    size of 2mb
-                  </p>
-                </div>
-                <div className="position-relative">
-                  <img src={uploadImg} alt="" />
-                  <input
-                    type="file"
-                    style={{ maxWidth: "17%", marginTop: "5px" }}
-                    className=" position-absolute top-50 start-0 translate-middle-y opacity-0"
-                    role="button"
-                  />
+              <div className="row">
+                <div className="col-lg-12 ps-0">
+                  <h3>Thumbnail</h3>
+                  <div className="d-flex gap-2 align-items-center">
+                    <img src={exclamationImg} alt="" />
+                    <p className="pt-3">
+                      This image will appear in the explore page, upload a
+                      square size of 2mb
+                    </p>
+                  </div>
+                  <div className="position-relative">
+                    <img src={uploadImg} alt="" />
+                    <input
+                      type="file"
+                      style={{ maxWidth: "17%", marginTop: "5px" }}
+                      className=" position-absolute top-50 start-0 translate-middle-y opacity-0"
+                      role="button"
+                    />
+                  </div>
                 </div>
               </div>
-              <div className="mt-4 d-flex gap-3">
-                <MyButton/>
+              <div className="row">
+
+              <div className="mt-4 col-lg-12 ps-0 gap-3">
+                <MyButton />
+              </div>
               </div>
             </Form>
           </div>

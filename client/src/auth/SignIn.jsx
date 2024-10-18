@@ -3,16 +3,61 @@ import "../styles/SignIn.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import navLogo from "../assets/nav-logo.png";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import { signInSchema } from "../utils/ValidationSchema";
 import { Link, useNavigate } from "react-router-dom";
 import vissibilityOnIcon from "../assets/visibility_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg";
 import vissibilityOffIcon from "../assets/visibility_off_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg";
+import toast from 'react-hot-toast';
+
 
 const SignIn = () => {
   const [isReveal, setIsReveal] = useState(false);
-  const navigate = useNavigate()
+  const [isClicked,setIsClicked] = useState(false)
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    resolver: yupResolver(signInSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+  async function handleSignIn(data) {
+    setIsClicked(true)
+    try {
+      const req = await fetch("http://localhost:4040/api/auth/signin",{
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify(data)
+      })
+      const res = await req.json();
+      // console.log(res);
+      if(!res.success){
+        toast.error(res.errMsg)
+      }
+      if(res.success){
+        toast.success(res.message)
+        localStorage.setItem("hr-token",res.user.token)
+        if(res.user.role === "super-admin" || res.user.role === "admin"){
+          navigate("/admin-dashboard")
+        }else{
+          navigate("/employee-dashboard")
+        }
+      }
+      
+    } catch (error) {
+      
+    }finally{
+      setIsClicked(false)
+    }
 
-  function handleSignIn(event) {
-    event.preventDefault();
   }
   function toggleReveal() {
     if (isReveal) {
@@ -22,13 +67,14 @@ const SignIn = () => {
     }
   }
 
-function handleNavigate(){
-  navigate('/admin-dashboard')
-}
+  const btnText = isClicked ? "loading" : "Sign In"
   return (
     <>
       <main className="main-auth sign-in d-flex justify-content-center align-items-center">
-        <Form className="sign-in-inner shadow-lg" onSubmit={handleSignIn}>
+        <Form
+          className="sign-in-inner shadow-lg"
+          onSubmit={handleSubmit(handleSignIn)}
+        >
           <div className="text-center">
             <div className="d-flex justify-content-center align-items-center gap-2">
               <div>
@@ -46,8 +92,9 @@ function handleNavigate(){
               className="input"
               type="email"
               placeholder="Enter email"
+              {...register("email", { required: true })}
             />
-            {/* <p>error</p> */}
+            <span className="text-danger fs-6 text-start fw-bold"> {errors.email?.message}</span>
           </Form.Group>
           <Form.Group className="" controlId="formBasicPassword">
             <div className="d-flex justify-content-between">
@@ -68,12 +115,13 @@ function handleNavigate(){
                 className="input"
                 type={isReveal ? "text" : "password"}
                 placeholder="Password"
+                {...register("password", { required: true })}
               />
-              {/* <p>error</p> */}
+              <span className="text-danger fs-6 text-start fw-bold"> {errors.password?.message}</span>
             </div>
           </Form.Group>
-          <Button className="sign-in-btn" variant="primary" type="submit" onClick={handleNavigate}>
-            Sign In
+          <Button className="sign-in-btn" variant="primary" type="submit" disabled={isSubmitting}>
+            {btnText}
           </Button>
         </Form>
       </main>

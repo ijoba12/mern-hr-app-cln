@@ -4,12 +4,14 @@ import { connect } from "./lib/db.js";
 import authRoute from "./routes/authRoute.js";
 import fileUpload from "express-fileupload"; 
 import { v2 as cloudinary } from 'cloudinary';
+import cors from "cors"
 const app = express();
 
 
 const port = 4040; 
 dotenv.config();
 
+app.use(cors())
 app.use(express.json())
 app.use(fileUpload({ useTempFiles: true }));
 

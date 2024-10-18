@@ -37,7 +37,7 @@ const Employees = () => {
                         isActive ? "is-active" : ""
                       } pb-3`}
                     >
-                      Teams
+                      Depts
                     </h6>
                   )}
                 </NavLink>
@@ -46,7 +46,7 @@ const Employees = () => {
                 <button className="new-employee-btn d-flex gap-2 justify-content-center align-items-center">
                   <img src={plusSign} alt="" />
                 <Link className="new-employee-link" to={isTeamsRoute ? "/admin-dashboard/employees/new-team" : "/admin-dashboard/employees/personal-info"}>
-                {isTeamsRoute ? "New Team" : "New Employee"}
+                {isTeamsRoute ? "New Dept" : "New Employee"}
               </Link>
                 </button>
             </ul>

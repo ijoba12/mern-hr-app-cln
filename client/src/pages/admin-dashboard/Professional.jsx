@@ -55,9 +55,14 @@ const Professional = () => {
                 </Form.Group>
               </div>
            
-              <div className="mt-4 d-flex gap-3">
+              {/* <div className="mt-4 d-flex gap-3">
                 <MyButton/>
-              </div>
+              </div> */}
+              <div className="row">
+              <Form.Group className="col-lg-12  ps-0">
+                <MyButton />
+              </Form.Group>
+            </div>
             </Form>
           </div>
       </div>

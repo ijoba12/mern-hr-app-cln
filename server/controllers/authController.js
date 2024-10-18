@@ -93,7 +93,7 @@ export const signup = async (req, res) => {
     const user = await USER.create({ ...req.body });
     res.status(201).json({
       success: true,
-      message: "registration successful welcome mail has also been sent",
+      message: "Employee has been successfully added, welcome mail has also been sent",
       user,
     });
     const clientUrl = process.env.CLIENT_URL;
