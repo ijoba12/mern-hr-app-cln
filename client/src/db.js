@@ -213,3 +213,90 @@ export const allEmployeesList = [
     status:"Hybrid"
   },
 ]
+
+export const departments = [
+  {
+    id: 1,
+    name: "Product",
+    employees: [
+      { id: 1,  img:photo1,
+        name:"Mikel Arteta",
+        position:"Manager", },
+      { id: 2,img:photo2,
+        name:"Martin Odegaad",
+        position:"Javascript fullstack dev", },
+      { id: 3,img:photo3,
+        name:"Bukayo Saka",
+        position:"Data Analyst" },
+      { id: 4,img:photo4,
+        name:"Thomas Partey",
+        position:"Cyber security", },
+      { id: 5, img:photo1,
+        name:"Declan rice",
+        position:"Product designer", }
+    ]
+  },
+  {
+    id: 2,
+    name: "Marketing",
+    employees: [
+      { id: 3,  img:photo2,
+        name:"Carlo Ancelotti",
+        position:"Manager", },
+      { id: 4,img:photo3,
+        name:"Segio Ramos",
+        position:"Art Director",},
+      { id: 5,img:photo4,
+        name:"Modrich",
+        position:"Marketer", },
+      { id: 6,img:photo1,
+        name:"Cristiano Ronaldo",
+        position:"Customer Rep", },
+      { id: 7, img:photo2,
+        name:"Jude Bellingham",
+        position:"customer rep",}
+    ]
+  },
+  {
+    id: 3,
+    name: "Admin",
+    employees: [
+      { id: 8,   img:photo3,
+        name:"Tomas Rosicky",
+        position:"Manager", },
+      { id: 9, img:photo4,
+        name:"Kanu Nwakwo",
+        position:"Art Director",},
+      { id: 10, img:photo1,
+        name:"Patrick Viera",
+        position:"Marketer", },
+      { id: 11,img:photo2,
+        name:"Thienry Henry",
+        position:"Customer Rep", },
+      { id: 12, img:photo3,
+        name:"Ian Wright",
+        position:"customer rep",}
+    ]
+  },
+  {
+    id: 4,
+    name: "Operations",
+    employees: [
+      { id: 13,   img:photo4,
+        name:"Arsene Wenger",
+        position:"Manager", },
+      { id: 14, img:photo1,
+        name:"Jenns Lehmann",
+        position:"Art Director",},
+      { id: 15, img:photo2,
+        name:"Sol Campbell",
+        position:"Marketer", },
+      { id: 16,img:photo3,
+        name:"Roberto Carlos",
+        position:"Customer Rep", },
+      { id: 17,  img:photo4,
+        name:"Cesc Fabregas",
+        position:"customer rep",}
+    ]
+  },
+]

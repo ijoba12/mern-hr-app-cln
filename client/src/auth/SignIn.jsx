@@ -15,6 +15,7 @@ import toast from 'react-hot-toast';
 const SignIn = () => {
   const [isReveal, setIsReveal] = useState(false);
   const [isClicked,setIsClicked] = useState(false)
+  const [isError,setIsError] = useState(null)
   const navigate = useNavigate();
   const {
     register,
@@ -39,6 +40,7 @@ const SignIn = () => {
       })
       const res = await req.json();
       // console.log(res);
+    
       if(!res.success){
         toast.error(res.errMsg)
       }
@@ -53,6 +55,15 @@ const SignIn = () => {
       }
       
     } catch (error) {
+    if (error.message === "Failed to fetch") {
+      setIsError("Unable to connect to the server. Please check your network.");
+    } else if (error.message.startsWith("HTTP Error")) {
+      setIsError(error.message);  
+    } else {
+      setIsError("An unexpected error occurred. Please try again.");
+    }
+    toast.error(isError);
+    console.log("Error details:", error);
       
     }finally{
       setIsClicked(false)
