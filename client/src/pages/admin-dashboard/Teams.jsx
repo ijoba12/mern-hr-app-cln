@@ -8,11 +8,11 @@ const Teams = () => {
   return (
     <>
       <main className="teams-wrapper">
-        <div className="container teams-wrapper-div">
+        <div className="container-fluid teams-wrapper-div">
           <div className="row justify-content-between gap-5">
             {departments.map((dept) => {
               return (
-                <div className="col-lg-5 border p-3 teams-wrapper-map" >
+                <div className="col-lg-5  border p-3 teams-wrapper-map" >
                   <div className="d-flex justify-content-between align-items-center border-bottom border-1">
                     <div>
                       <h4> {dept.name} Department </h4>

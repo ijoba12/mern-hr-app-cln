@@ -57,8 +57,8 @@ const userSchema = new Schema({
   },
   profileImage: {
     type: String,
-    // default:
-    //   "https://media.istockphoto.com/id/850937512/photo/words-boy-and-girl-on-bright-backgrounds.webp?b=1&s=170667a&w=0&k=20&c=WQvEeQhk-LBnFjMdB_sVhEBPzTNBuvYeWYfU7W4aYqc=",
+    default:
+      "https://media.istockphoto.com/id/850937512/photo/words-boy-and-girl-on-bright-backgrounds.webp?b=1&s=170667a&w=0&k=20&c=WQvEeQhk-LBnFjMdB_sVhEBPzTNBuvYeWYfU7W4aYqc=",
   },
   role: {
     type: String,
@@ -76,9 +76,9 @@ const userSchema = new Schema({
     required: [true, "job title is required"],
   },
   department: {
-    type: String,
-    enum: ["administration", "product", "marketing"],
-    required: [true, "please select a department"],
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "department",
+    required: true,
   },
   employmentStatus: {
     type: String,
@@ -126,7 +126,7 @@ userSchema.methods.comparePassword = async function(userPassword){
 }
 // generate jwt token
 userSchema.methods.generateToken = async function(params){
-  let token = jwt.sign({userId:this._id,role:this.role},process.env.JWT_SECRETE,{
+  let token = jwt.sign({userId:this._id,role:this.role,firstName: this.firstName,email:this.email,lastName:this.lastName},process.env.JWT_SECRETE,{
       expiresIn: '24h',
     });
 

@@ -10,12 +10,15 @@ import { Link, useNavigate } from "react-router-dom";
 import vissibilityOnIcon from "../assets/visibility_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg";
 import vissibilityOffIcon from "../assets/visibility_off_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg";
 import toast from 'react-hot-toast';
+import { useAuth } from "../context/AuthContext";
+import { Loader } from "../utils/Loader";
 
 
 const SignIn = () => {
   const [isReveal, setIsReveal] = useState(false);
   const [isClicked,setIsClicked] = useState(false)
   const [isError,setIsError] = useState(null)
+  const {login} = useAuth() 
   const navigate = useNavigate();
   const {
     register,
@@ -39,13 +42,14 @@ const SignIn = () => {
         body:JSON.stringify(data)
       })
       const res = await req.json();
-      // console.log(res);
+      console.log(res);
     
       if(!res.success){
         toast.error(res.errMsg)
       }
       if(res.success){
         toast.success(res.message)
+        login(res.user)
         localStorage.setItem("hr-token",res.user.token)
         if(res.user.role === "super-admin" || res.user.role === "admin"){
           navigate("/admin-dashboard")
@@ -78,7 +82,7 @@ const SignIn = () => {
     }
   }
 
-  const btnText = isClicked ? "loading" : "Sign In"
+  const btnText = isClicked ? <Loader/> : "Sign In"
   return (
     <>
       <main className="main-auth sign-in d-flex justify-content-center align-items-center">

@@ -21,8 +21,9 @@ import UserAccount from "./pages/admin-dashboard/UserAccount";
 import NewTeam from "./pages/admin-dashboard/NewTeam";
 import EditTeam from "./pages/admin-dashboard/EditTeam";
 import EmployeeDashboard from "./pages/employee-dashboard/EmployeeDashboard";
-import { Toaster } from 'react-hot-toast';
-
+import PrivateRoute from "./utils/PrivateRoute";
+import { Toaster } from "react-hot-toast";
+import RoleBasedRoutes from "./utils/RoleBasedRoutes";
 
 function App() {
   return (
@@ -36,7 +37,16 @@ function App() {
             path="auth/reset-password/:resetToken"
             element={<ResetPassword />}
           />
-          <Route path="admin-dashboard" element={<AdminDashboard />}>
+          <Route
+            path="admin-dashboard"
+            element={
+              <PrivateRoute>
+                <RoleBasedRoutes requiredRole={["admin", "super-admin"]}>
+                  <AdminDashboard />
+                </RoleBasedRoutes>
+              </PrivateRoute>
+            }
+          >
             <Route index element={<AdminSummary />} />
             {/* employees */}
             <Route path="employees" element={<Employees />}>
@@ -61,15 +71,20 @@ function App() {
             <Route path="payroll" element={<PayRoll />} />
             <Route path="settings" element={<Settings />} />
           </Route>
-          <Route path="employee-dashboard" element={<EmployeeDashboard />}>
-
-            <Route index element={<EmployeeDashboard/>}/>
+          <Route
+            path="employee-dashboard"
+            element={
+              <PrivateRoute>
+                <EmployeeDashboard />
+              </PrivateRoute>
+            }
+          >
+            <Route index element={<EmployeeDashboard />} />
           </Route>
           <Route path="*" element={<Error />} />
         </Routes>
-      <Toaster/>
+        <Toaster />
       </BrowserRouter>
-
     </>
   );
 }

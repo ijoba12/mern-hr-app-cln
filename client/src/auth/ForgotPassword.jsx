@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import navLogo from "../assets/nav-logo.png";
@@ -6,8 +6,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { forgotPasswordSchema } from "../utils/ValidationSchema";
 import { useForm } from "react-hook-form";
 import "../styles/ForgotPassword.css";
-
+import axios from "axios";
+import { Loader } from "../utils/Loader";
+import toast from "react-hot-toast";
 const ForgotPassword = () => {
+  const [isClicked,setIsClicked] = useState(false)
+
   const {
     register,
     handleSubmit,
@@ -19,8 +23,51 @@ const ForgotPassword = () => {
     },
   });
   const handleForgotPwd = async (data) => {
-    console.log(data);
+    setIsClicked(true)
+
+    // try {
+    //   const response = await axios.post("http://localhost:4040/api/auth/forgotpassword",data);
+    //   console.log(response);
+    //   if(response.data.success){
+    //     toast.success(response.data.message)
+    //   }
+      
+    // } catch (error) {
+    //   console.log(error.data);
+      
+      
+    // }finally{
+    //   setIsClicked(false)
+
+    // }
+   try {
+    const req = await fetch("http://localhost:4040/api/auth/forgotpassword",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify(data)
+    })
+    const res = await req.json();
+    console.log(res);
+    
+    if(!res.success){
+      toast.error(res.errMsg)
+    }
+    if(res.success){
+      toast.success(res.message)
+
+    }
+    console.log(res);
+    
+   } catch (error) {
+    
+   }finally{
+    setIsClicked(false)
+
+   }
   };
+  const btnText = isClicked ? <Loader/> : "Request Password Reset"
 
   return (
     <>
@@ -52,8 +99,9 @@ const ForgotPassword = () => {
             className="forgot-password-btn"
             variant="primary"
             type="submit"
+            disabled={isSubmitting}
           >
-            Request Password Reset
+            {btnText}
           </Button>
         </Form>
       </main>

@@ -3,3 +3,8 @@
     width: 47%;
 }
 }
+@media(min-width:1090px){
+.teams-wrapper-map{
+    width: 46%;
+}
+}

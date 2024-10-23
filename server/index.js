@@ -2,13 +2,17 @@ import express from "express";
 import dotenv from "dotenv";
 import { connect } from "./lib/db.js";
 import authRoute from "./routes/authRoute.js";
+import departmentRoute from "./routes/departmentRoutes.js";
+import employeeRoute from "./routes/employeesRoutes.js";
+import taskRoute from "./routes/taskRoute.js"
 import fileUpload from "express-fileupload"; 
 import { v2 as cloudinary } from 'cloudinary';
+
 import cors from "cors"
 const app = express();
 
 
-const port = 4040; 
+const port = process.env.PORT || 4040; 
 dotenv.config();
 
 app.use(cors())
@@ -17,6 +21,9 @@ app.use(fileUpload({ useTempFiles: true }));
 
 // API's
 app.use("/api/auth",authRoute)
+app.use("/api/department",departmentRoute);
+app.use("/api/employee",employeeRoute);
+app.use("/api/task",taskRoute);
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.API_KEY,

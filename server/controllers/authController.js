@@ -2,7 +2,8 @@ import USER from "../models/userModel.js";
 import { sendWelcomeEmail,sendForgotPasswordMail } from "../emails/emailHandlers.js";
 import fs from "fs";
 import { v2 as cloudinary } from "cloudinary";
-import crypto from "crypto"
+import crypto from "crypto";
+import DEPARTMENT from "../models/departmentModel.js";
 
 // sign-up
 export const signup = async (req, res) => {
@@ -90,23 +91,36 @@ export const signup = async (req, res) => {
 
     fs.unlinkSync(req.files.profileImage.tempFilePath);
 
-    const user = await USER.create({ ...req.body });
-    res.status(201).json({
-      success: true,
-      message: "Employee has been successfully added, welcome mail has also been sent",
-      user,
-    });
-    const clientUrl = process.env.CLIENT_URL;
+     const newUser = await USER.create({ ...req.body });
 
-    try {
-      await sendWelcomeEmail({
-        to: user.email,
-        firstName: user.firstName,
-        clientUrl,
-      });
-    } catch (emailError) {
-      console.error("Error sending welcome Email", emailError);
-    }
+     // Find the department and add the new employee to the members array
+     const dept = await DEPARTMENT.findById(department);
+     if (!dept) {
+       return res.status(404).json({ success: false, errMsg: "Department not found." });
+     }
+ 
+     dept.members.push(newUser._id); // Add new user's ID to the members array
+     await dept.save(); // Save the department with the new member
+ 
+     // Send a welcome email (optional)
+     const clientUrl = process.env.CLIENT_URL;
+ 
+     try {
+       await sendWelcomeEmail({
+         to: newUser.email,
+         firstName: newUser.firstName,
+         clientUrl,
+       });
+     } catch (emailError) {
+       console.error("Error sending welcome email", emailError);
+     }
+ 
+     // Return the success response
+     res.status(201).json({
+       success: true,
+       message: "Employee has been successfully added, and the department has been updated.",
+       user: newUser,
+     });
   } catch (error) {
     console.log(error.message);
     res.status(500).json(error.message);
@@ -223,6 +237,11 @@ export const forgotPassword = async(req,res)=>{
     res.status(500).json(error.message)
     
   }
+}
+
+// verify
+export const verify = async(req,res)=>{
+  return res.status(201).json({success:true,user:req.user})
 }
 
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ladyProfilePic from "../assets/ladyProfilePic.svg";
 import messageImg from "../assets/messageImg.png";
 import searchImg from "../assets/searchIcon.svg";
@@ -9,10 +9,12 @@ import AuthDropDown from "../componenets/AuthDropDown";
 import OffCanvass from "../componenets/OffCanvass";
 import Dropdown from "react-bootstrap/Dropdown";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext.jsx";
 
 const Navbar = () => {
   const [isTrue, setIsTrue] = useState(false);
-  let navigate = useNavigate()
+  const { user, isLoading, logout } = useAuth();
+
   function handleReveal() {
     isTrue ? setIsTrue(false) : setIsTrue(true);
   }
@@ -65,11 +67,16 @@ const Navbar = () => {
                 id="dropdown-basic"
                 className="drop-down-header"
               >
-                Eggys Eggys
+                {/* Eggys Eggys */}
+                {user && user?.firstName }
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item href="#" className="text-danger" onClick={()=>navigate("/auth/sign-in")}>
+                <Dropdown.Item
+                  href="#"
+                  className="text-danger"
+                  onClick={logout}
+                >
                   Log Out
                 </Dropdown.Item>
               </Dropdown.Menu>

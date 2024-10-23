@@ -1,14 +1,20 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { sidebarLinks } from "../db";
 import appLogo from "../assets/nav-logo.png";
 import arrowUp from "../assets/arrow-up-logo.svg";
 import arrowDown from "../assets/arrow-down-logo.svg";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet,useNavigate } from "react-router-dom";
 import "../styles/AdminDashboard.css";
 import Navbar from "./Navbar";
+import { useAuth } from "../context/AuthContext";
+
 
 const AdminDashboard = () => {
-  const [role,setRole] = useState("admin") 
+  const [role,setRole] = useState("admin");
+  const { user, isLoading, logout } = useAuth();
+
+
+  
   return (
     <>
       <main className="container-fluid  admin-dashoard ">
@@ -23,11 +29,11 @@ const AdminDashboard = () => {
                 </div>
                 <div className="">
                   <h1 className="mb-0">HR Manager</h1>
-                  <p className="">hrmanager@yahoo.com</p>
+                  <p className="mt-2" style={{width:"60px"}}> {user && user?.email} </p>
                 </div>
               </div>
               <div>
-                <div>
+                <div className="mb-2">
                   <div>
                     <img src={arrowUp} alt="arrow-up-logo" className="" />
                   </div>
