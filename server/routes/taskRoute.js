@@ -1,11 +1,12 @@
 import express from "express";
-import { createTask, deleteTask, editTask, getAllTasks } from "../controllers/taskController.js"; // Adjust the path as necessary
+import { createTask, deleteTask, editTask, getAllTasks } from "../controllers/taskController.js"; 
 import { auth } from "../middleware/auth.js";
 import restrict from "../middleware/isAdmin.js";
 
 const router = express.Router();
 
-router.post("/tasks",auth,restrict("admin", "super-admin"), createTask); // Route for creating a task
+// creat task
+router.post("/tasks",auth,restrict("admin", "super-admin"), createTask); 
 // Route to get all tasks
 router.get('/',auth,restrict("admin", "super-admin"), getAllTasks);
 

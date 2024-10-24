@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, Outlet, NavLink, useMatch ,useLocation} from "react-router-dom";
 import "../../styles/Employees.css";
-import plusSign from "../../assets/plus-sign-new-task.svg"
+import plusSign from "../../assets/plus.svg"
 
 const Employees = () => {
   const location = useLocation();

@@ -121,3 +121,9 @@ export const getEmployeeById = async (req, res) => {
       res.status(500).json({ success: false, errMsg: "Server error." });
     }
   };
+
+
+
+
+
+ 

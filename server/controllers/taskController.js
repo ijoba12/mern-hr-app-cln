@@ -1,12 +1,16 @@
-import Task from '../models/taskModel.js'; // Adjust the import based on your file structure
-import USER from '../models/userModel.js'; // Import your User model to get user details
+import Task from "../models/taskModel.js"; 
+import USER from "../models/userModel.js"; 
+import {sendTaskMail} from "../emails/emailHandlers.js";
+
+// create a task
 export const createTask = async (req, res) => {
   const { title, description, assignedMembers, startDate, endDate, status } = req.body;
 
   try {
-    if(!title || !description || !assignedMembers || !startDate || !endDate || !status){
-        return res.status(400).json({success:false,errMsg:"all fields are required"})
+    if (!title || !description || !assignedMembers || !startDate || !endDate || !status) {
+      return res.status(400).json({ success: false, errMsg: "All fields are required" });
     }
+
     const task = await Task.create({
       title,
       description,
@@ -16,9 +20,28 @@ export const createTask = async (req, res) => {
       status,
     });
 
+    const members = await USER.find({ _id: { $in: assignedMembers } });
+    
+
+    const clientUrl = process.env.CLIENT_URL;
+
+    members.forEach((member) => {
+      sendTaskMail({
+        to: member.email,
+        firstName: member.firstName,
+        taskTitle: title, 
+        taskDescription: description,  
+        startDate, 
+        endDate,
+        assignedMembers: members,
+
+        clientUrl, 
+      });
+    });
+
     res.status(201).json({
       success: true,
-      message: "Task created successfully",
+      message: "Task created successfully and emails sent to assigned members.",
       task,
     });
   } catch (error) {
@@ -29,76 +52,100 @@ export const createTask = async (req, res) => {
 
 // Get all tasks with specified details
 export const getAllTasks = async (req, res) => {
-    try {
-      // Fetch all tasks and populate the assignedMembers field
-      const tasks = await Task.find().populate('assignedMembers', 'profileImage fullName'); // Adjust the fields to include only needed information
-  
-      // Map through tasks to format the response
-      const formattedTasks = tasks.map(task => {
-        // Get profile pictures for up to 3 members
-        const memberPics = task.assignedMembers.slice(0, 3).map(member => ({
-          profileImage: member.profileImage,
-          fullName: member.fullName,
-        }));
-  
-        return {
-          description: task.description,
-          duration: {
-            startDate: task.startDate,
-            endDate: task.endDate,
-          },
-          status: task.status,
-          memberPics, // Include the member profile pictures
-        };
-      });
-  
-      res.status(200).json({
-        success: true,
-        count: formattedTasks.length,
-        tasks: formattedTasks,
-      });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ success: false, errMsg: "Server error." });
-    }
-  };
+  try {
+    const tasks = await Task.find().populate('assignedMembers', 'firstName lastName profileImage');
 
-  // Delete a task
+    const tasksWithDetails = tasks.map(task => {
+      return {
+        title: task.title,
+        assignedMembers: task.assignedMembers,
+        startDate: task.startDate,
+        endDate: task.endDate,
+        status: task.status,
+      };
+    });
+
+    res.status(200).json({
+      success: true,
+      tasks: tasksWithDetails,
+    });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ success: false, errMsg: "Server error." });
+  }
+};
+
+// Delete a task
 export const deleteTask = async (req, res) => {
-    const { id } = req.params; // Extract the task ID from the request parameters
-    try {
-      const task = await Task.findByIdAndDelete(id);
-      
-      if (!task) {
-        return res.status(404).json({ success: false, errMsg: "Task not found." });
-      }
-  
-      res.status(200).json({ success: true, message: "Task deleted successfully." });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ success: false, errMsg: "Server error." });
+  const { id } = req.params; 
+  try {
+    const task = await Task.findByIdAndDelete(id);
+
+    if (!task) {
+      return res
+        .status(404)
+        .json({ success: false, errMsg: "Task not found." });
     }
-  };
-  
-  // Edit a task
-  export const editTask = async (req, res) => {
-    const { id } = req.params; // Extract the task ID from the request parameters
-    const { title, description, assignedMembers, startDate, endDate, status } = req.body;
-  
-    try {
-      const task = await Task.findByIdAndUpdate(
-        id,
-        { title, description, assignedMembers, startDate, endDate, status },
-        { new: true, runValidators: true }
-      );
-  
-      if (!task) {
-        return res.status(404).json({ success: false, errMsg: "Task not found." });
-      }
-  
-      res.status(200).json({ success: true, task });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ success: false, errMsg: "Server error." });
+
+    res
+      .status(200)
+      .json({ success: true, message: "Task deleted successfully." });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, errMsg: "Server error." });
+  }
+};
+
+// Edit a task
+export const editTask = async (req, res) => {
+  const { id } = req.params; // Extract the task ID from the request parameters
+  const { title, description, assignedMembers, startDate, endDate, status } =
+    req.body;
+
+  try {
+    const task = await Task.findByIdAndUpdate(
+      id,
+      { title, description, assignedMembers, startDate, endDate, status },
+      { new: true, runValidators: true }
+    );
+
+    if (!task) {
+      return res
+        .status(404)
+        .json({ success: false, errMsg: "Task not found." });
     }
-  };
+
+    res.status(200).json({ success: true, task });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, errMsg: "Server error." });
+  }
+};
+// Get a task
+export const getTaskById = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const task = await Task.findById(id).populate('assignedMembers', 'firstName lastName profilePic');
+
+    if (!task) {
+      return res.status(404).json({ success: false, errMsg: "Task not found." });
+    }
+
+    const taskDetails = {
+      title: task.title,
+      assignedMembers: task.assignedMembers, 
+      startDate: task.startDate,
+      endDate: task.endDate,
+      status: task.status,
+    };
+
+    res.status(200).json({
+      success: true,
+      task: taskDetails,
+    });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ success: false, errMsg: "Server error." });
+  }
+};

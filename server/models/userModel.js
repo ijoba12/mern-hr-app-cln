@@ -126,7 +126,7 @@ userSchema.methods.comparePassword = async function(userPassword){
 }
 // generate jwt token
 userSchema.methods.generateToken = async function(params){
-  let token = jwt.sign({userId:this._id,role:this.role,firstName: this.firstName,email:this.email,lastName:this.lastName},process.env.JWT_SECRETE,{
+  let token = jwt.sign({userId:this._id,role:this.role,firstName: this.firstName,email:this.email,lastName:this.lastName,profileImage:this.profileImage},process.env.JWT_SECRETE,{
       expiresIn: '24h',
     });
 

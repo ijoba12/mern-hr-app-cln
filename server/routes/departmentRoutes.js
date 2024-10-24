@@ -1,4 +1,4 @@
-import express, { Router } from "express";
+import express from "express";
 import { createDepartment, getDepartments, getSingleDepartment } from "../controllers/departmentController.js";
 import { auth } from "../middleware/auth.js";
 import restrict from "../middleware/isAdmin.js";

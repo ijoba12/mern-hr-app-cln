@@ -56,7 +56,18 @@
   font-weight: 400;
   font-size: 16px;
 }
-
+.employee-table-pagination-wrapper , button{
+  color: rgba(135, 135, 137, 1);
+  font-size: 16px;
+  font-weight: 400;
+}
+.employee-table-pagination-wrapper  button{
+ border: none;
+ width: 146px;
+ height: 40px;
+ border: 1px solid rgba(207, 207, 208, 1);
+ border-radius: 4px;
+}
 @media (min-width: 766px) and (max-width: 991px) {
   .employee-table {
     overflow-x: scroll;

@@ -32,18 +32,17 @@ export const getDepartments = async (req, res) => {
 
 // single dept
 export const getSingleDepartment = async (req, res) => {
-  const { id } = req.params; // Get the department ID from the request parameters
+  const { id } = req.params;
 
   try {
-    // Find the department by ID and populate the members with their relevant fields
     const department = await DEPARTMENT.findById(id)
       .populate({
         path: 'members',
-        select: 'firstName lastName profileImage jobTitle employmentStatus', // Select the fields to populate
+        select: 'firstName lastName profileImage jobTitle employmentStatus',
       })
       .populate({
-        path: 'manager', // Populate the manager field
-        select: 'firstName lastName profileImage jobTitle employmentStatus', // Select relevant fields for the manager
+        path: 'manager',
+        select: 'firstName lastName profileImage jobTitle employmentStatus', 
       });
 
     // If the department is not found
@@ -53,7 +52,7 @@ export const getSingleDepartment = async (req, res) => {
 
     // Create a member array with the manager included
     const membersWithDetails = department.members.map(member => ({
-      fullName: `${member.firstName} ${member.lastName}`, // Combine first and last names
+      fullName: `${member.firstName} ${member.lastName}`, 
       profileImage: member.profileImage,
       jobTitle: member.jobTitle,
       status: member.employmentStatus,
@@ -73,8 +72,8 @@ export const getSingleDepartment = async (req, res) => {
     res.status(200).json({
       success: true,
       department: {
-        ...department.toObject(), // Convert Mongoose document to plain JavaScript object
-        members: membersWithDetails, // Add formatted members including the manager
+        ...department.toObject(), 
+        members: membersWithDetails, 
       },
     });
   } catch (error) {

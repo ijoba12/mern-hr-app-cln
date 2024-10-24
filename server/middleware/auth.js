@@ -15,7 +15,7 @@ export const auth = async(req,res,next)=>{
 			return res.status(401).json({success:false,errMsg: "Unauthorized - Invalid Token" });
 		}
 
-        req.user = {userId:payload.userId,role:payload.role,firstName:payload.firstName,email:payload.email,lastName:payload.lastName}
+        req.user = {userId:payload.userId,role:payload.role,firstName:payload.firstName,email:payload.email,lastName:payload.lastName,profileImage:payload.profileImage}
         next()
     } catch (error) {
         return res.status(401).json({message:"Auth Failed"})

@@ -1,3 +1,45 @@
+.teams-wrapper{
+    font-family: var(--ff-DM-sans);
+}
+.teams-wrapper h4{
+    font-size: 22px;
+    font-weight: 600;
+    color: rgba(64, 64, 64, 1);
+}
+.teams-wrapper p{
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(127, 127, 127, 1);
+}
+.teams-wrapper a{
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(52, 57, 202, 1);
+}
+.teams-wrapper-map{
+   border-radius: 6px;
+}
+.teams-wrapper-employees-profile-pic{
+    min-height: 41px;
+}
+.teams-wrapper-employees-profile-pic img{
+    min-height: 41px;
+}
+.teams-wrapper-employees-arrow-right img{
+    width: 12px;
+    height: 5px;
+}
+.teams-wrapper-employees-span-1{
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(5, 5, 5, 1);
+}
+.teams-wrapper-employees-span-2{
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(127, 127, 127, 1);
+}
+
 @media(min-width:1024px){
 .teams-wrapper-map{
     width: 47%;
