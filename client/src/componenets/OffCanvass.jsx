@@ -9,9 +9,11 @@ import arrowUp from "../assets/arrow-up-logo.svg";
 import arrowDown from "../assets/arrow-down-logo.svg";
 import { NavLink} from "react-router-dom";
 import menuImg from "../assets/menu.svg"
+import { useAuth } from "../context/AuthContext";
 
 const OffCanvass = ({ name, ...props }) => {
   const [show, setShow] = useState(false);
+  const {user,logout} = useAuth()
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -30,7 +32,7 @@ const OffCanvass = ({ name, ...props }) => {
                   </div>
                   <div className="">
                     <h1 className="mb-0">HR Manager</h1>
-                    <p className="">hrmanager@yahoo.com</p>
+                    <p className="">{user && user?.email}</p>
                   </div>
                 </div>
                 <div>

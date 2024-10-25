@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
       try {
         if (token) {
           const request = await axios.get(
-            "http://localhost:4040/api/auth/verify",
+            "https://mern-hr-app.onrender.com/api/auth/verify",
             {
               headers: {
                 Authorization: `Bearer ${token}`,
