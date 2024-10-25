@@ -21,7 +21,7 @@ const EmployeeTable = ({ Name, Email, Team, Supervisor, Status }) => {
                   <h5 className="employee-table-wrapper-h5">Email</h5>{" "}
                 </th>
                 <th>
-                  <h5 className="employee-table-wrapper-h5">Team</h5>{" "}
+                  <h5 className="employee-table-wrapper-h5">Dept</h5>{" "}
                 </th>
                 <th>
                   <h5 className="employee-table-wrapper-h5">Supervisor</h5>{" "}
@@ -62,7 +62,7 @@ const EmployeeTable = ({ Name, Email, Team, Supervisor, Status }) => {
                         className="employee-table-data"
                       >
                         {" "}
-                        {employee.team}{" "}
+                        {employee.dept}{" "}
                       </p>
                     </td>
                     <td>

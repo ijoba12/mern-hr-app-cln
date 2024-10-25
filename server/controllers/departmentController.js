@@ -81,3 +81,50 @@ export const getSingleDepartment = async (req, res) => {
     res.status(500).json({ success: false, errMsg: "Server error." });
   }
 };
+
+// search employees
+export const searchDept = async (req, res) => {
+  const { query } = req.query; 
+
+  try {
+    // Use a regular expression to perform a case-insensitive search on dept name 
+    const dept = await DEPARTMENT.find({
+      $or: [
+        { name: { $regex: query, $options: 'i' } }, // Search by dept name
+      ]
+    });
+
+    // If no users are found
+    if (!dept || dept.length === 0) {
+      return res.status(404).json({ success: false, errMsg: "No dept found." });
+    }
+
+    // Return the list of found users
+    res.status(200).json({
+      success: true,
+      count: dept.length,
+      dept,
+    });
+
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ success: false, errMsg: "Server error." });
+  }
+};
+
+
+// update dept
+export const updateDept = async(req,res)=>{
+  const {deptId} = req.params;
+  try {
+      const department = await DEPARTMENT.findOneAndUpdate(
+          {_id:deptId},
+          req.body,
+          {new:true,runValidators:true}
+      )
+      res.status(200).json({success:true,message:"dept updated",department})
+  } catch (error) {
+      console.log(error.message);
+      res.status(500).json(error.message)
+  }
+}

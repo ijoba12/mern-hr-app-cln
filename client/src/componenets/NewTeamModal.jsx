@@ -2,6 +2,7 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
+import "../styles/NewTeamModal.css";
 // import DeptButton from "../componenets/MyButton"
 
 const NewTeamModal = (props) => {
@@ -12,10 +13,11 @@ const NewTeamModal = (props) => {
         size="md"
         aria-labelledby="contained-modal-title-vcenter"
         centered
+        className="new-team-wrapper"
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Create New Department
+            <span> Create New Department</span>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -33,8 +35,8 @@ const NewTeamModal = (props) => {
             </Form.Group> */}
             {/* assign persons */}
             <Form.Group className="mb-3">
-              <Form.Label htmlFor="">Team Manager</Form.Label>
-              <Form.Select id="" className="personal-info-wrapper-select">
+              <Form.Label htmlFor="">Dept Manager</Form.Label>
+              <Form.Select id="" className="new-team-wrapper-select">
                 <option disabled selected>
                   Select
                 </option>
@@ -64,8 +66,8 @@ const NewTeamModal = (props) => {
               </div> */}
             {/* task status */}
             <Form.Group className="mb-3">
-              <Form.Label htmlFor="">Team Members</Form.Label>
-              <Form.Select id="" className="personal-info-wrapper-select">
+              <Form.Label htmlFor="">Dept Members</Form.Label>
+              <Form.Select id="" className="new-team-wrapper-select">
                 <option disabled selected>
                   Select
                 </option>

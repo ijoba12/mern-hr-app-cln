@@ -11,6 +11,10 @@ import photo1 from "./assets/taskTeamPhoto.svg";
 import photo2 from "./assets/taskTeamPhotoMale.svg";
 import photo3 from "./assets/taskTeamPhotoLady.svg";
 import photo4 from "./assets/taskTeamPhotoLadyAfro.svg"
+import inProgressLogo from "./assets/in-progress-logo.svg";
+import completedLogo from "./assets/completed-logo.svg";
+import plannedLogo from "./assets/planned-logo.svg";
+import allProjectsLogo from "./assets/all-projects-logo.svg"
 
 export const sidebarLinks = [
   {
@@ -52,6 +56,32 @@ export const sidebarLinks = [
 ];
 
 
+export const taskLenght = [
+  {
+    id:1,
+    title:"In Progress",
+    count:23,
+    img:inProgressLogo
+  },
+  {
+    id:2,
+    title:"Completed",
+    count:20,
+    img:completedLogo
+  },
+  {
+    id:3,
+    title:"Planned",
+    count:15,
+    img:plannedLogo
+  },
+  {
+    id:4,
+    title:"All Projects",
+    count:15,
+    img:allProjectsLogo
+  },
+]
 export const eventLenght = [
   {
     id:1,
@@ -181,7 +211,7 @@ export const allEmployeesList = [
     name:"Raheem Sterling",
     img:photo1,
     email:"raheem@tmt.com",
-    team:"Product",
+    dept:"Product",
     supervisor:"Eric Ten-Hagg",
     status:"Remote"
   },
@@ -190,7 +220,7 @@ export const allEmployeesList = [
     name:"Eggys Eggys",
     img:photo2,
     email:"eggys@tmt.com",
-    team:"Product",
+    dept:"Product",
     supervisor:"Joshua Zirkzee",
     status:"On-Site"
   },
@@ -199,7 +229,7 @@ export const allEmployeesList = [
     name:"Chukwudi Tobiloba",
     img:photo3,
     email:"chtobiloba@tmt.com",
-    team:"Marketing",
+    dept:"Marketing",
     supervisor:"Bukayo Saka",
     status:"On-Site"
   },
@@ -208,7 +238,7 @@ export const allEmployeesList = [
     name:"Olawole Anita",
     img:photo4,
     email:"olawo999@tmt.com",
-    team:"Adminstration",
+    dept:"Adminstration",
     supervisor:"Joshua Zirkzee",
     status:"Hybrid"
   },

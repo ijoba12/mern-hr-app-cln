@@ -40,6 +40,8 @@ const Professional = () => {
                     </option>
                     <option>Product</option>
                     <option>Admin</option>
+                    <option>Marketing</option>
+                    <option>Operations</option>
                   </Form.Select>
                 </Form.Group>
                 <Form.Group className="mb-3 col-lg-6 ps-0">

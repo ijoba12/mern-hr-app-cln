@@ -22,7 +22,7 @@ const Employees = () => {
           <h5>Dashboard/Employee</h5>
         </section>
         <nav>
-          <ul className="d-flex justify-content-between align-items-center list-unstyled">
+          <ul className="d-flex flex-wrap justify-content-between align-items-center list-unstyled">
             <div className="d-flex gap-4">
               <NavLink
                 to="allemployees"

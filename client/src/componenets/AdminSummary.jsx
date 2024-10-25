@@ -7,7 +7,7 @@ const AdminSummary = () => {
   return (
     <>
       <main className="pt-5 admin-summary-wrapper">
-        <section className=" admin-summary-section-1 pt-1 ">
+        <section className="admin-summary-section-1 pt-1 ">
           <h1 className="admin-summary-section-1-header">Dashboard</h1>
           <div className="admin-summary-section-1-div justify-content-between align-items-center pt-5">
             {eventLenght.map((event) => {
