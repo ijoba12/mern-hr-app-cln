@@ -9,7 +9,7 @@ const Nav = () => {
         <h2>Add New Employee</h2>
         <p>All Employees / Add New Employee</p>
         <nav className="nav-wrapper my-5">
-          <ul className="list-unstyled d-flex gap-3 gap-md-4">
+          <ul className="list-unstyled d-flex flex-wrap gap-3 gap-md-4">
             <li>
               <NavLink to="/admin-dashboard/employees/personal-info" end>
                 {({ isActive }) => (

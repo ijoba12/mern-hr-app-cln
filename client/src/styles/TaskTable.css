@@ -2,6 +2,8 @@
   font-family: var(--ff-inter);
   border: 1px solid rgba(241, 242, 243, 1);
   border-radius: 14px;
+  overflow-x: visible;
+
 }
 .task-table-container {
   padding: 28px 17px 28px 17px;
@@ -79,8 +81,11 @@
 @media (min-width: 766px) and (max-width: 991px) {
     .task-table {
       overflow-x: scroll;
-      width: 500px;
+      width: 430px;
       margin-left: 0;
     }
 }
+@media (min-width: 992px) and (max-width: 1280px) {
+}
+
 

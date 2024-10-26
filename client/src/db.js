@@ -56,6 +56,28 @@ export const sidebarLinks = [
 ];
 
 
+export const leaveLenght = [
+  {
+    id:1,
+    title:"HR/Admin",
+    count:3
+  },
+  {
+    id:2,
+    title:"Product",
+    count:5
+  },
+  {
+    id:3,
+    title:"Marketing",
+    count:4
+  },
+  {
+    id:4,
+    title:"Operations",
+    count:6
+    },
+]
 export const taskLenght = [
   {
     id:1,
@@ -205,6 +227,56 @@ export const taskBoardTableData = [
 ]
 
 
+export const allLeaveList = [
+  {
+    id:1,
+    name:"Raheem Sterling",
+    img:photo1,
+    leaveType:"Casual Leave",
+    duration:{
+      start:"03 Mar 2023",
+      end:"10 Mar 2023"
+    },
+    days:"6 Days",
+    status:"Pending"
+  },
+  {
+    id:2,
+    name:"Eggys Eggys",
+    img:photo2,
+    leaveType:"Sick Leave",
+    duration:{
+      start:"03 Mar 2023",
+      end:"10 Mar 2023"
+    },
+    days:"6 Days",
+    status:"Pending"
+  },
+  {
+    id:3,
+    name:"Chukwudi Tobiloba",
+    img:photo3,
+    leaveType:"Annual Leave",
+    duration:{
+      start:"03 Mar 2023",
+      end:"10 Mar 2023"
+    },
+    days:"6 Days",
+    status:"Declined"
+  },
+  {
+    id:4,
+    name:"Olawole Anita",
+    img:photo4,
+    leaveType:"Annual Leave",
+    duration:{
+      start:"03 Mar 2023",
+      end:"10 Mar 2023"
+    },
+    days:"6 Days",
+    status:"Declined"
+  },
+]
 export const allEmployeesList = [
   {
     id:1,
