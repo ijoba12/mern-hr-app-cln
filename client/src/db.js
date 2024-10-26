@@ -274,7 +274,7 @@ export const allLeaveList = [
       end:"10 Mar 2023"
     },
     days:"6 Days",
-    status:"Declined"
+    status:"Approved"
   },
 ]
 export const allEmployeesList = [

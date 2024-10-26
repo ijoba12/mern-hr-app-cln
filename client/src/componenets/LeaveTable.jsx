@@ -7,37 +7,37 @@ import "../styles/LeaveTable.css";
 const LeaveTable = ({ Name, Email, Team, Supervisor, Status }) => {
   return (
     <>
-      <main className="employee-table-wrapper employee-table-container mt-5">
-        <div className="employee-table">
-          <Table responsive="sm" hover role="button">
-            <thead className="employee-table-wrapper-head">
+      <main className="leave-table-wrapper leave-table-container my-5 w-100">
+        <div className="leave-table">
+          <Table responsive hover role="button">
+            <thead className="leave-table-wrapper-head">
               <tr>
                 <th>
-                  <h5 className="employee-table-wrapper-h5">Name</h5>{" "}
+                  <h5 className="leave-table-wrapper-h5">Name</h5>{" "}
                 </th>
-                <th className="">
-                  <h5 className="employee-table-wrapper-h5 ">Leave Type</h5>{" "}
-                </th>
-                <th>
-                  <h5 className="employee-table-wrapper-h5">Duration</h5>{" "}
+                <th className="" >
+                  <h5 className="leave-table-wrapper-h5 leave-tabel-sm">Leave Type</h5>{" "}
                 </th>
                 <th>
-                  <h5 className="employee-table-wrapper-h5">Days</h5>{" "}
+                  <h5 className="leave-table-wrapper-h5">Duration</h5>{" "}
                 </th>
                 <th>
-                  <h5 className="employee-table-wrapper-h5">Status</h5>{" "}
+                  <h5 className="leave-table-wrapper-h5">Days</h5>{" "}
+                </th>
+                <th>
+                  <h5 className="leave-table-wrapper-h5">Status</h5>{" "}
                 </th>
               </tr>
             </thead>
             {allLeaveList.map((leave) => {
               return (
-                <tbody key={leave.id} className="employee-table-body">
+                <tbody key={leave.id} className="leave-table-body">
                   <tr>
                     <td>
                       <div className="d-flex gap-2 align-items-center ">
                         <img src={leave.img} alt="" />
                         <h6
-                          id="employee-table-name"
+                          id="leave-table-name"
                           className="employee-table-data pt-1"
                         >
                           {" "}
@@ -55,10 +55,10 @@ const LeaveTable = ({ Name, Email, Team, Supervisor, Status }) => {
                       </p>
                     </td>
                     <td className="d-flex flex-column">
-                    <h6 id="task-table-body-start">
+                    <h6 id="leave-table-body-start">
                       Start: {leave.duration.start}
                     </h6>
-                    <h6 id="task-table-body-end">End: {leave.duration.end}</h6>
+                    <h6 id="leave-table-body-end">End: {leave.duration.end}</h6>
                   </td>
                     <td>
                       <p
@@ -72,11 +72,11 @@ const LeaveTable = ({ Name, Email, Team, Supervisor, Status }) => {
                     <td>
                       <p
                         className={`${
-                          leave.status === "Remote"
-                            ? "employee-table-orange"
-                            : leave.status === "On-Site"
-                            ? "employee-table-green"
-                            : "employee-table-blue"
+                          leave.status === "Pending"
+                            ? "leave-table-orange"
+                            : leave.status === "Approved"
+                            ? "leave-table-green"
+                            : "leave-table-red"
                         }`}
                       >
                         {" "}
