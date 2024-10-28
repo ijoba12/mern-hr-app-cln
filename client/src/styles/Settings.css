@@ -58,6 +58,14 @@
     height: 120px;
     
 }
+.settings-wrapper a{
+    font-family: var(--ff-inter);
+    font-weight: 500;
+    font-size: 12px;
+    color: rgba(52, 57, 202, 1);
+}
+
+
 
 @media(max-width:765px){
 

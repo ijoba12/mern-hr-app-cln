@@ -27,7 +27,9 @@ export const employees = async(req,res)=>{
         // Fetch users with pagination and populate the department field
         const users = await USER.find()
           .populate('department')
+          .sort({ createdAt: -1 })
           .limit(limit)
+          .select('-password -resetPasswordExpire -resetPasswordToken -createdAt -updatedAt')
           .skip(startIndex);
     
         // Get total number of users for pagination

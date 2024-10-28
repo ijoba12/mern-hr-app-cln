@@ -68,6 +68,13 @@
  border: 1px solid rgba(207, 207, 208, 1);
  border-radius: 4px;
 }
+.employee-profile-image{
+  max-width: 43.84px;
+  max-height: 43.84px;
+  border-radius: 100%;
+  border: 1px solid rgba(222, 222, 222, 1);
+
+}
 @media (min-width: 766px) and (max-width: 991px) {
   .employee-table {
     overflow-x: scroll;

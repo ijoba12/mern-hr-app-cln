@@ -1,14 +1,24 @@
-import Task from "../models/taskModel.js"; 
-import USER from "../models/userModel.js"; 
-import {sendTaskMail} from "../emails/emailHandlers.js";
+import Task from "../models/taskModel.js";
+import USER from "../models/userModel.js";
+import { sendTaskMail } from "../emails/emailHandlers.js";
 
 // create a task
 export const createTask = async (req, res) => {
-  const { title, description, assignedMembers, startDate, endDate, status } = req.body;
+  const { title, description, assignedMembers, startDate, endDate, status } =
+    req.body;
 
   try {
-    if (!title || !description || !assignedMembers || !startDate || !endDate || !status) {
-      return res.status(400).json({ success: false, errMsg: "All fields are required" });
+    if (
+      !title ||
+      !description ||
+      !assignedMembers ||
+      !startDate ||
+      !endDate ||
+      !status
+    ) {
+      return res
+        .status(400)
+        .json({ success: false, errMsg: "All fields are required" });
     }
 
     const task = await Task.create({
@@ -21,7 +31,6 @@ export const createTask = async (req, res) => {
     });
 
     const members = await USER.find({ _id: { $in: assignedMembers } });
-    
 
     const clientUrl = process.env.CLIENT_URL;
 
@@ -29,13 +38,13 @@ export const createTask = async (req, res) => {
       sendTaskMail({
         to: member.email,
         firstName: member.firstName,
-        taskTitle: title, 
-        taskDescription: description,  
-        startDate, 
+        taskTitle: title,
+        taskDescription: description,
+        startDate,
         endDate,
         assignedMembers: members,
 
-        clientUrl, 
+        clientUrl,
       });
     });
 
@@ -45,17 +54,46 @@ export const createTask = async (req, res) => {
       task,
     });
   } catch (error) {
-    console.error(error.message);
-    res.status(500).json({ success: false, errMsg: "Server error." });
+    if (error.name === "ValidationError") {
+      const errorResponse = {
+        message: "Validation Error",
+        errors: {},
+      };
+
+      // Loop through the validation errors to provide detailed messages
+      for (const field in error.errors) {
+        errorResponse.errors[field] = {
+          message: error.errors[field].message,
+          value: error.errors[field].value,
+        };
+
+        // If the error is related to an enum, you can provide additional details
+        if (error.errors[field].kind === "enum") {
+          errorResponse.errors[field].enumValues =
+            error.errors[field].properties.enumValues;
+          errorResponse.errors[field].enumMessage = `The value "${
+            error.errors[field].value
+          }" is not valid. Allowed values are: ${errorResponse.errors[
+            field
+          ].enumValues.join(", ")}.`;
+        }
+      }
+
+      return res.status(400).json(errorResponse); // Send detailed validation errors
+    }
+    return res
+      .status(500)
+      .json({ message: "Server Error", error: error.message });
   }
 };
 
 // Get all tasks with specified details
 export const getAllTasks = async (req, res) => {
   try {
-    const tasks = await Task.find().populate('assignedMembers', 'firstName lastName profileImage');
-
-    const tasksWithDetails = tasks.map(task => {
+    const tasks = await Task.find()
+      .populate("assignedMembers", "firstName lastName profileImage")
+      .sort({ createdAt: -1 });
+    const tasksWithDetails = tasks.map((task) => {
       return {
         title: task.title,
         assignedMembers: task.assignedMembers,
@@ -77,7 +115,7 @@ export const getAllTasks = async (req, res) => {
 
 // Delete a task
 export const deleteTask = async (req, res) => {
-  const { id } = req.params; 
+  const { id } = req.params;
   try {
     const task = await Task.findByIdAndDelete(id);
 
@@ -126,15 +164,20 @@ export const getTaskById = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const task = await Task.findById(id).populate('assignedMembers', 'firstName lastName profilePic');
+    const task = await Task.findById(id).populate(
+      "assignedMembers",
+      "firstName lastName profilePic"
+    );
 
     if (!task) {
-      return res.status(404).json({ success: false, errMsg: "Task not found." });
+      return res
+        .status(404)
+        .json({ success: false, errMsg: "Task not found." });
     }
 
     const taskDetails = {
       title: task.title,
-      assignedMembers: task.assignedMembers, 
+      assignedMembers: task.assignedMembers,
       startDate: task.startDate,
       endDate: task.endDate,
       status: task.status,

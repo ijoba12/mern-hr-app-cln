@@ -3,6 +3,7 @@ import "../../styles/Settings.css";
 import Form from "react-bootstrap/Form";
 import profilePic from "../../assets/taskTeamPhotoLady.svg";
 import MyButton from "../../componenets/MyButton";
+import {Link} from "react-router-dom"
 
 const Settings = () => {
   return (
@@ -26,14 +27,18 @@ const Settings = () => {
                   controlId="exampleForm.ControlInput1"
                 >
                   <Form.Label className="settings-form-label" >Full Name</Form.Label>
-                  <Form.Control className="section-form-input" type="text" placeholder="name@example.com" />
+                  <Form.Control className="section-form-input" type="text" placeholder="Eggys" />
                 </Form.Group>
                 <Form.Group
                   className="mb-3"
                   controlId="exampleForm.ControlInput1"
                 >
-                  <Form.Label className="settings-form-label" >Email Address</Form.Label>
-                  <Form.Control className="section-form-input" type="email" placeholder="name@example.com" />
+                  <div className="d-flex justify-content-between">
+
+                  <Form.Label className="settings-form-label">Email Address</Form.Label>
+                  <Link>Change Account Email</Link>
+                  </div>
+                  <Form.Control className="section-form-input" type="email" placeholder="demo@account.com" />
                 </Form.Group>
                
                 </div>
@@ -49,9 +54,13 @@ const Settings = () => {
                 <Form.Group
                   className="mb-3"
                   controlId="exampleForm.ControlInput1"
-                >
+                  >
+                  <div className="d-flex justify-content-between">
+
                   <Form.Label className="settings-form-label" >Password</Form.Label>
-                  <Form.Control className="section-form-input" type="password" placeholder="name@example.com" />
+                  <Link>Change Account Email</Link>
+                  </div>
+                  <Form.Control className="section-form-input" type="password" placeholder="xxxxxxxxxxx" />
                 </Form.Group>
               </div>
             </div>

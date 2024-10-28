@@ -21,7 +21,7 @@ export const createDepartment = async (req, res) => {
 // all depts
 export const getDepartments = async (req, res) => {
   try {
-    const departments = await DEPARTMENT.find({});
+    const departments = await DEPARTMENT.find({}).sort({ createdAt: -1 });
     res.status(200).json({ success: true, departments });
   } catch (error) {
     res
@@ -37,22 +37,24 @@ export const getSingleDepartment = async (req, res) => {
   try {
     const department = await DEPARTMENT.findById(id)
       .populate({
-        path: 'members',
-        select: 'firstName lastName profileImage jobTitle employmentStatus',
+        path: "members",
+        select: "firstName lastName profileImage jobTitle employmentStatus",
       })
       .populate({
-        path: 'manager',
-        select: 'firstName lastName profileImage jobTitle employmentStatus', 
+        path: "manager",
+        select: "firstName lastName profileImage jobTitle employmentStatus",
       });
 
     // If the department is not found
     if (!department) {
-      return res.status(404).json({ success: false, errMsg: "Department not found." });
+      return res
+        .status(404)
+        .json({ success: false, errMsg: "Department not found." });
     }
 
     // Create a member array with the manager included
-    const membersWithDetails = department.members.map(member => ({
-      fullName: `${member.firstName} ${member.lastName}`, 
+    const membersWithDetails = department.members.map((member) => ({
+      fullName: `${member.firstName} ${member.lastName}`,
       profileImage: member.profileImage,
       jobTitle: member.jobTitle,
       status: member.employmentStatus,
@@ -72,8 +74,8 @@ export const getSingleDepartment = async (req, res) => {
     res.status(200).json({
       success: true,
       department: {
-        ...department.toObject(), 
-        members: membersWithDetails, 
+        ...department.toObject(),
+        members: membersWithDetails,
       },
     });
   } catch (error) {
@@ -82,16 +84,16 @@ export const getSingleDepartment = async (req, res) => {
   }
 };
 
-// search employees
+// search dept
 export const searchDept = async (req, res) => {
-  const { query } = req.query; 
+  const { query } = req.query;
 
   try {
-    // Use a regular expression to perform a case-insensitive search on dept name 
+    // Use a regular expression to perform a case-insensitive search on dept name
     const dept = await DEPARTMENT.find({
       $or: [
-        { name: { $regex: query, $options: 'i' } }, // Search by dept name
-      ]
+        { name: { $regex: query, $options: "i" } }, // Search by dept name
+      ],
     });
 
     // If no users are found
@@ -105,26 +107,26 @@ export const searchDept = async (req, res) => {
       count: dept.length,
       dept,
     });
-
   } catch (error) {
     console.error(error.message);
     res.status(500).json({ success: false, errMsg: "Server error." });
   }
 };
 
-
 // update dept
-export const updateDept = async(req,res)=>{
-  const {deptId} = req.params;
+export const updateDept = async (req, res) => {
+  const { deptId } = req.params;
   try {
-      const department = await DEPARTMENT.findOneAndUpdate(
-          {_id:deptId},
-          req.body,
-          {new:true,runValidators:true}
-      )
-      res.status(200).json({success:true,message:"dept updated",department})
+    const department = await DEPARTMENT.findOneAndUpdate(
+      { _id: deptId },
+      req.body,
+      { new: true, runValidators: true }
+    );
+    res
+      .status(200)
+      .json({ success: true, message: "dept updated", department });
   } catch (error) {
-      console.log(error.message);
-      res.status(500).json(error.message)
+    console.log(error.message);
+    res.status(500).json(error.message);
   }
-}
+};

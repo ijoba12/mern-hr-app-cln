@@ -76,7 +76,12 @@
     font-size: 16px;
     
 }
-
+.task-profile-img{
+    max-width: 30.86px;
+    max-height: 30.86px;
+    border-radius: 100%;
+    border: 1px solid rgba(222, 222, 222, 1);
+}
 
 @media (min-width: 766px) and (max-width: 991px) {
     .task-table {

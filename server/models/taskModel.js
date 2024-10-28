@@ -28,8 +28,8 @@ const taskSchema = new Schema(
     },
     status: {
       type: String,
-      enum: ["planned", "completed", "in progress"],
-      default: "planned",
+      enum: ["Planned", "Completed", "In progress"],
+      default: "Planned",
       required: true,
     },
   },
