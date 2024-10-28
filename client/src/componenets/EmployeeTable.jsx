@@ -80,7 +80,10 @@ if (error) return <p>{error}</p>;
                   <tr>
                     <td>
                       <div className="d-flex gap-2 align-items-center ">
-                        <img src={employee.profileImage} alt="" className="employee-profile-image" />
+                        <div className="employee-profile-image">
+
+                        <img src={employee.profileImage} alt="" className="" />
+                        </div>
                         <h6
                           id="employee-table-name"
                           className="employee-table-data pt-1"
@@ -113,7 +116,7 @@ if (error) return <p>{error}</p>;
                         className="employee-table-data"
                       >
                         {" "}
-                        {/* {employee?.department?.manager}{" "} */}
+                        {employee?.department?.manager}{" "}
                       </p>
                     </td>
                     <td>

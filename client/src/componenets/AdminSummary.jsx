@@ -12,15 +12,20 @@ const AdminSummary = () => {
   const token = localStorage.getItem("hr-token");
 
   const getCounts = async ()=>{
-    const req = await axios.get("https://mern-hr-app.onrender.com/api/count",{
-      headers:{
-        Authorization: `Bearer ${token}`,
-      }
-    })
-    // const res = await req.json();
-    console.log(req.data.eventLenght);
-
-    setData(req.data.eventLenght)
+    try {
+      const req = await axios.get("https://mern-hr-app.onrender.com/api/count",{
+        headers:{
+          Authorization: `Bearer ${token}`,
+        }
+      })
+      // const res = await req.json();
+      console.log(req.data.eventLenght);
+  
+      setData(req.data.eventLenght)
+      
+    } catch (error) {
+      
+    }
   }
 
   useEffect(()=>{
@@ -43,7 +48,6 @@ const AdminSummary = () => {
                     </div>
                     <div>
                       {title === "Total Employees" ?   <img src={totalEmployeesImg} alt="event-img" loading="lazy" /> :title === "Total Tasks" ? <img src={totalTasksImg} alt="event-img" loading="lazy" /> :<img src={totalLeaves} alt="event-img" loading="lazy" /> }
-                    
                     </div>
                   </div>
                 </div>

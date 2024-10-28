@@ -9,6 +9,9 @@ export const allSchemaCount = async (req, res) => {
     const tasks = await Task.find();
     const leaves = 15;
     // counts
+    const usersCount = users.length;
+    const tasksCount = tasks.length;
+
     const eventLenght =[
         {
             title:"Total Employees",
@@ -23,7 +26,7 @@ export const allSchemaCount = async (req, res) => {
             count:leaves,
         }
     ] 
-    res.status(200).json({ success: true, eventLenght });
+    res.status(200).json({ success: true, eventLenght,usersCount,tasksCount,leaves });
   } catch (error) {
     res.json(error);
   }

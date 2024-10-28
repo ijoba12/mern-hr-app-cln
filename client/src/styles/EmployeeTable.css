@@ -69,10 +69,18 @@
  border-radius: 4px;
 }
 .employee-profile-image{
-  max-width: 43.84px;
-  max-height: 43.84px;
-  border-radius: 100%;
-  border: 1px solid rgba(222, 222, 222, 1);
+  width: 43.84px; 
+  height: 43.84px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(222, 222, 222, 1)
+
+}
+
+.employee-profile-image img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 
 }
 @media (min-width: 766px) and (max-width: 991px) {

@@ -100,6 +100,7 @@ export const getAllTasks = async (req, res) => {
         startDate: task.startDate,
         endDate: task.endDate,
         status: task.status,
+        _id:task._id
       };
     });
 
@@ -166,7 +167,7 @@ export const getTaskById = async (req, res) => {
   try {
     const task = await Task.findById(id).populate(
       "assignedMembers",
-      "firstName lastName profilePic"
+      "firstName lastName profilePic _id"
     );
 
     if (!task) {
@@ -176,6 +177,7 @@ export const getTaskById = async (req, res) => {
     }
 
     const taskDetails = {
+      task:task._id,
       title: task.title,
       assignedMembers: task.assignedMembers,
       startDate: task.startDate,
