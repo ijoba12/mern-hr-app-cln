@@ -27,9 +27,10 @@ const SignIn = () => {
   } = useForm({
     resolver: yupResolver(signInSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: "oladapomubarak@gmail.com",
+      password: "eggys1234",
     },
+    signInSchema
   });
   async function handleSignIn(data) {
     setIsClicked(true)

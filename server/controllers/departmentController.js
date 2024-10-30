@@ -19,14 +19,50 @@ export const createDepartment = async (req, res) => {
   }
 };
 // all depts
+// export const getDepartments = async (req, res) => {
+//   try {
+//     const departments = await DEPARTMENT.find({}).sort({ createdAt: -1 });
+//     res.status(200).json({ success: true, departments });
+//   } catch (error) {
+//     res
+//       .status(500)
+//       .json({ success: false, message: "Error fetching departments" });
+//   }
+// };
 export const getDepartments = async (req, res) => {
   try {
-    const departments = await DEPARTMENT.find({}).sort({ createdAt: -1 });
-    res.status(200).json({ success: true, departments });
+    const departments = await DEPARTMENT.find({})
+      .populate('manager', 'firstName lastName profileImage') 
+      .populate('members', 'firstName lastName profileImage') 
+      .sort({ createdAt: -1 });
+
+    // If no departments are found
+    if (!departments || departments.length === 0) {
+      return res.status(404).json({ success: false, message: "No departments found." });
+    }
+
+    const formattedDepartments = departments.map(department => ({
+      _id: department._id,
+      name: department.name,
+      manager: department.manager
+        ? {
+            _id: department.manager._id,
+            fullName: `${department.manager.firstName} ${department.manager.lastName}`,
+            profileImage: department.manager.profileImage,
+          }
+        : null,
+      members: department.members.map(member => ({
+        _id: member._id,
+        fullName: `${member.firstName} ${member.lastName}`,
+        profileImage: member.profileImage,
+      })),
+    }));
+
+    res.status(200).json({ success: true, departments: formattedDepartments });
+    
   } catch (error) {
-    res
-      .status(500)
-      .json({ success: false, message: "Error fetching departments" });
+    console.error(error);
+    res.status(500).json({ success: false, message: "Error fetching departments" });
   }
 };
 

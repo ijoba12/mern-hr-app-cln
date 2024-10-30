@@ -3,6 +3,7 @@ import axios from "axios";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  const [data,setData] = useState([])
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const token = localStorage.getItem("hr-token");
@@ -14,6 +15,25 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
     localStorage.removeItem("hr-token");
   };
+
+  const getCounts = async ()=>{
+    try {
+      const req = await axios.get("https://mern-hr-app.onrender.com/api/count",{
+        headers:{
+          Authorization: `Bearer ${token}`,
+        }
+      })
+      // const res = await req.json();
+      console.log(req.data.eventLenght);
+  
+      setData(req.data.eventLenght)
+      
+    } catch (error) {
+      
+    }
+  }
+
+ 
 
   useEffect(() => {
     const verifyUser = async () => {
@@ -46,6 +66,8 @@ export const AuthProvider = ({ children }) => {
       }
     };
     verifyUser();
+    getCounts()
+
   }, []);
 
   return (
@@ -55,6 +77,8 @@ export const AuthProvider = ({ children }) => {
         logout,
         user,
         isLoading,
+        data,
+        getCounts
       }}
     >
       {children}

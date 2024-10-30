@@ -74,6 +74,7 @@ const OffCanvass = ({ name, ...props }) => {
                 </div>
               </div>
             </section>
+            <p role="button" onClick={logout} className="ps-4 pt-5 text-danger fs-4">Logout</p>
           </Offcanvas.Body>
         </Offcanvas>
       </main>

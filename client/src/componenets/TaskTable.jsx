@@ -6,6 +6,8 @@ import axios from "axios";
 import { Loader } from "../utils/Loader";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import toast from "react-hot-toast"
+import { useAuth } from "../context/AuthContext";
 
 const TaskTable = () => {
   const [data,setData] = useState([]);
@@ -13,6 +15,7 @@ const TaskTable = () => {
   const [error, setError] = useState(null);
   const [selectedTask, setSelectedTask] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const {getCounts} = useAuth()
 
   const token = localStorage.getItem("hr-token");
 
@@ -66,8 +69,11 @@ const TaskTable = () => {
       })
     
       console.log(req);
+      if (req.data.success){
+       toast.success(req.data.message) 
+      }
       setData(data.filter((existingDatum) => existingDatum._id !== id));
-
+      getCounts()
    
     } catch (error) {
     
@@ -89,7 +95,7 @@ const TaskTable = () => {
     <main className="my-5 task-table-wrapper task-table-container">
       <h1 className="pb-4">Taskboard</h1>
       <div className="task-table">
-        <Table role="button" hover responsive>
+        <Table role="button"  responsive>
           <thead className="task-table-wrapper-head">
             <tr>
               {/* <th>
@@ -130,7 +136,7 @@ const TaskTable = () => {
                       <img src={task.teamPhoto.teamPhoto2} alt="" />
                       <img src={task.teamPhoto.teamPhoto3} alt="" />
                       <img src={task.teamPhoto.teamPhoto4} alt="" /> */}
-                      {task?.assignedMembers.map((img)=>{
+                      {task?.assignedMembers.slice(0,2).map((img)=>{
                         return(
                           <div key={img?._id}>
                             <div className="task-profile-img">
@@ -171,7 +177,8 @@ const TaskTable = () => {
             );
           })}
         </Table>
-        <Modal show={showModal} onHide={() => setShowModal(false)} centered>
+        <Modal show={showModal} onHide={() => setShowModal(false)} centered       size="lg"
+        >
           <Modal.Header closeButton>
             <Modal.Title>Task Details</Modal.Title>
           </Modal.Header>
@@ -180,13 +187,14 @@ const TaskTable = () => {
               <>
                 <p><strong>Title:</strong> {selectedTask.title}</p>
                 <p><strong>Status:</strong> {selectedTask.status}</p>
-                <p><strong>Assigned Members:</strong> {selectedTask.assignedMembers.map(member => `${member.firstName} ${member.lastName}`).join(', ')}</p>
+                {/* <p><strong>Assigned Members:</strong> {selectedTask.assignedMembers.map(member => `${member.firstName} ${member.lastName}`).join(', ')}</p> */}
+                
                 <p><strong>Start Date:</strong> {selectedTask.startDate.slice(0, 10)}</p>
                 <p><strong>End Date:</strong> {selectedTask.endDate.slice(0, 10)}</p>
                 {selectedTask.assignedMembers.map((img)=>{
                   return(
-                    <div>
-                      <img src={img?.profileImage} alt="" />
+                    <div className="task-profile-img">
+                  <img src={img?.profileImage} alt="" className="" />
                     </div>
                   )
                 })}
@@ -195,11 +203,11 @@ const TaskTable = () => {
               <Loader />
             )}
           </Modal.Body>
-          <Modal.Footer>
+          {/* <Modal.Footer>
             <Button variant="secondary" onClick={() => setShowModal(false)}>
               Close
             </Button>
-          </Modal.Footer>
+          </Modal.Footer> */}
         </Modal>
       </div>
     </main>

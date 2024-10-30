@@ -18,15 +18,21 @@ export const updateEmployee = async(req,res)=>{
 export const employees = async(req,res)=>{
     try {
         // Set default values for page and limit
-        const page = parseInt(req.query.page) || 1; // default to page 1
-        const limit = parseInt(req.query.limit) || 10; // default to 10 users per page
+        const page = parseInt(req.query.page) || 1; 
+        const limit = parseInt(req.query.limit) || 10;
     
         // Calculate the starting index of the page
         const startIndex = (page - 1) * limit;
     
         // Fetch users with pagination and populate the department field
         const users = await USER.find()
-          .populate('department')
+        .populate({
+          path: 'department',
+          populate: {
+            path: 'manager', 
+            select: 'firstName lastName',
+          },
+        })
           .sort({ createdAt: -1 })
           .limit(limit)
           .select('-password -resetPasswordExpire -resetPasswordToken -createdAt -updatedAt')

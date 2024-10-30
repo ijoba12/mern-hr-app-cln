@@ -7,6 +7,8 @@ import DEPARTMENT from "../models/departmentModel.js";
 
 // sign-up
 export const signup = async (req, res) => {
+ 
+  
   if (req.user.role !== 'admin' && req.user.role !== 'super-admin') {
     return res.status(403).json({ success: false, errMsg: "Access denied. Admins only." });
   }
@@ -19,7 +21,6 @@ export const signup = async (req, res) => {
     maritalStatus,
     gender,
     address,
-    profileImage,
     officeOfEmployment,
     jobTitle,
     department,
@@ -73,14 +74,18 @@ export const signup = async (req, res) => {
       return;
     }
     //
-    if (!req.files || !req.files.profileImage) {
-      return res
-        .status(400)
-        .json({ success: false, errMsg: "Profile image is required" });
+    // if (!req.files || !req.files.profileImage) {
+    //   return res
+    //     .status(400)
+    //     .json({ success: false, errMsg: "Profile image is required" });
+    // }
+    const imageToBeUploaded = req.files?.profileImage?.tempFilePath || req.body.profileImage
+    if(!imageToBeUploaded){
+      return res.status(400).json({errMsg: 'image has to be uploaded', success: false})
     }
 
     const result = await cloudinary.uploader.upload(
-      req.files.profileImage.tempFilePath,
+      imageToBeUploaded,
       {
         use_filename: true,
         folder: "hr_manager",
@@ -89,20 +94,28 @@ export const signup = async (req, res) => {
 
     req.body.profileImage = result.secure_url;
 
-    fs.unlinkSync(req.files.profileImage.tempFilePath);
-
-     const newUser = await USER.create({ ...req.body });
-
-     // Find the department and add the new employee to the members array
-     const dept = await DEPARTMENT.findById(department);
-     if (!dept) {
+    // fs.unlinkSync(req.files.profileImage.tempFilePath);
+       const dept = await DEPARTMENT.findOne({name: department})
+  console.log(dept);
+    if (!dept) {
        return res.status(404).json({ success: false, errMsg: "Department not found." });
      }
+     
+
+     const newUser = await USER.create({ ...req.body, department: dept._id });
+
+     // Find the department and add the new employee to the members array
+  
+  
+     
+    //  const dept = await DEPARTMENT.findOne({name: department})
+     
+   
  
-     dept.members.push(newUser._id); // Add new user's ID to the members array
-     await dept.save(); // Save the department with the new member
- 
-     // Send a welcome email (optional)
+     // Save the department with the new member
+   dept.members.push(newUser._id); // Add new user's ID to the members array
+      await dept.save();
+    // Send a welcome email (optional)
      const clientUrl = process.env.CLIENT_URL;
  
      try {
@@ -115,14 +128,14 @@ export const signup = async (req, res) => {
        console.error("Error sending welcome email", emailError);
      }
  
-     // Return the success response
+     //Return the success response
      res.status(201).json({
        success: true,
        message: "Employee has been successfully added, and the department has been updated.",
        user: newUser,
      });
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
     res.status(500).json(error.message);
   }
 };

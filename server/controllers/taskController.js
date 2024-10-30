@@ -137,7 +137,7 @@ export const deleteTask = async (req, res) => {
 
 // Edit a task
 export const editTask = async (req, res) => {
-  const { id } = req.params; // Extract the task ID from the request parameters
+  const { id } = req.params; 
   const { title, description, assignedMembers, startDate, endDate, status } =
     req.body;
 
@@ -167,7 +167,7 @@ export const getTaskById = async (req, res) => {
   try {
     const task = await Task.findById(id).populate(
       "assignedMembers",
-      "firstName lastName profilePic _id"
+      "firstName lastName profileImage _id"
     );
 
     if (!task) {

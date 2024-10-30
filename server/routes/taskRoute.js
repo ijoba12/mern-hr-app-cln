@@ -9,7 +9,7 @@ const router = express.Router();
 router.post("/tasks",auth,restrict("admin", "super-admin"), createTask); 
 // Route to get all tasks
 router.get('/',auth,restrict("admin", "super-admin"), getAllTasks);
-
+ 
 // Route to delete a task by ID
 router.delete('/:id',auth,restrict("admin", "super-admin"), deleteTask);
 
