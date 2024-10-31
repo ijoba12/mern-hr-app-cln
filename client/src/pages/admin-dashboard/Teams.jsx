@@ -11,7 +11,7 @@ const Teams = () => {
   const getDepts = async () => {
     try {
       const req = await axios.get(
-        "http://localhost:4040/api/department/all-departments",
+        "https://mern-hr-app.onrender.com/api/department/all-departments",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -32,7 +32,7 @@ const Teams = () => {
     <>
       <main className="teams-wrapper">
         <div className="container-fluid teams-wrapper-div">
-          <div className="row justify-content-between gap-5">
+          <div className=" x row justify-content-between gap-5">
             {dept?.map((dept) => {
               return (
                 <div className="col-lg-5  border p-3 teams-wrapper-map">
