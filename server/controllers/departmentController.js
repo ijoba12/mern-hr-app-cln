@@ -33,7 +33,7 @@ export const getDepartments = async (req, res) => {
   try {
     const departments = await DEPARTMENT.find({})
       .populate('manager', 'firstName lastName profileImage') 
-      .populate('members', 'firstName lastName profileImage') 
+      .populate('members', 'firstName lastName profileImage jobTitle') 
       .sort({ createdAt: -1 });
 
     // If no departments are found
@@ -44,6 +44,7 @@ export const getDepartments = async (req, res) => {
     const formattedDepartments = departments.map(department => ({
       _id: department._id,
       name: department.name,
+      membersLenght:department.members.length,
       manager: department.manager
         ? {
             _id: department.manager._id,
@@ -55,6 +56,7 @@ export const getDepartments = async (req, res) => {
         _id: member._id,
         fullName: `${member.firstName} ${member.lastName}`,
         profileImage: member.profileImage,
+        jobTitle:member.jobTitle
       })),
     }));
 
