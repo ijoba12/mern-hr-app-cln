@@ -33,7 +33,7 @@ export const getDepartments = async (req, res) => {
   try {
     const departments = await DEPARTMENT.find({})
       .populate('manager', 'firstName lastName profileImage') 
-      .populate('members', 'firstName lastName profileImage jobTitle') 
+      .populate('members', 'firstName lastName profileImage jobTitle status') 
       .sort({ createdAt: -1 });
 
     // If no departments are found
@@ -56,7 +56,8 @@ export const getDepartments = async (req, res) => {
         _id: member._id,
         fullName: `${member.firstName} ${member.lastName}`,
         profileImage: member.profileImage,
-        jobTitle:member.jobTitle
+        jobTitle:member.jobTitle,
+        status:member.status
       })),
     }));
 

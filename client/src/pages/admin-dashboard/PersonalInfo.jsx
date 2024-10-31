@@ -9,6 +9,7 @@ import MyButton from "../../componenets/MyButton";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { personalInformation } from "../../utils/ValidationSchema";
+import toast from "react-hot-toast";
 
 const PersonalInfo = () => {
   const match = useMatch("/admin-dashboard/employees/personal-info");
@@ -39,9 +40,10 @@ const PersonalInfo = () => {
         };
   
         localStorage.setItem("personalInfo", JSON.stringify(formDataWithImage));
-        reset();
         setImagePreview(null);
+        toast.success("saved successfully")
         console.log("Saved to local storage:", formDataWithImage);
+        reset();
       };
   
       reader.readAsDataURL(file); 

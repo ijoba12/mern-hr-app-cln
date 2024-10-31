@@ -6,6 +6,7 @@ import MyButton from "../../componenets/MyButton";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { salary } from "../../utils/ValidationSchema";
+import toast from "react-hot-toast";
 
 const Salary = () => {
   const {
@@ -17,9 +18,9 @@ const Salary = () => {
     resolver: yupResolver(salary),
   });
   const onSubmit = (data) => {
-    // Save combined data to local storage or perform other actions
     localStorage.setItem("salary", JSON.stringify(data));
-    
+    toast.success("saved successfully")
+    reset()
    
   };
 

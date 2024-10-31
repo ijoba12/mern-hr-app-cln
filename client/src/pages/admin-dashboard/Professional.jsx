@@ -9,6 +9,7 @@ import axios from "axios";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { professional } from "../../utils/ValidationSchema";
+import toast from "react-hot-toast";
 const Professional = () => {
   const [departments, setDepartments] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -27,6 +28,7 @@ const Professional = () => {
     localStorage.setItem("professional", JSON.stringify(data));
 
     console.log(data);
+    toast.success("saved successfully")
     // Reset the form after submission
     reset();
   };
