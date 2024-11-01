@@ -16,6 +16,32 @@ import completedLogo from "./assets/completed-logo.svg";
 import plannedLogo from "./assets/planned-logo.svg";
 import allProjectsLogo from "./assets/all-projects-logo.svg"
 
+export const employeeSidebarLinks = [
+  {
+    id: 1,
+    Icon: dashboardImg,
+    name: "Dashboard",
+    path: "",
+  },
+  {
+    id: 2,
+    Icon: taskboardImg,
+    name: "Taskboard",
+    path: "taskboard",
+  },
+  {
+    id: 3,
+    Icon: leaveboardImg,
+    name: "Leaveboard",
+    path: "leaveboard",
+  },
+  {
+    id: 4,
+    Icon: settingsImg,
+    name: "Settings",
+    path: "settings",
+  },
+];
 export const sidebarLinks = [
   {
     id: 1,

@@ -66,7 +66,7 @@ const Teams = () => {
                     <Link onClick={() => getDeptById(dept._id)}>View All</Link>
                   </div>
                   {dept.manager && (
-                    <div className="manager-info d-flex gap-1 ">
+                    <div className="manager-info d-flex gap-1 pt-4 ">
                       <div className="teams-wrapper-employees-profile-pic">
                         <img
                           src={dept.manager.profileImage}
@@ -83,7 +83,7 @@ const Teams = () => {
                   )}
                   <div>
                     <div className="teams-wrapper-employees">
-                      {dept?.members.map((employee) => {
+                      {dept?.members.slice(0,4).map((employee) => {
                         return (
                           <div
                             key={employee._id}
