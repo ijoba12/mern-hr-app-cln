@@ -76,9 +76,23 @@ const Settings = () => {
                 <img src={profilePic} alt="profile-pic" />
                 <p>Your profile pic will be visible next to your name in your profile.  Your image should be at least 200x200px and must be in JPG or PNG format.</p>
               </div>
-              <div className="mt-4">
-                <MyButton/>
-              </div>
+              
+              <div className="row mt-4">
+                    <div className="mt-4 col-lg-12 ps-0 gap-3 d-flex flex-column-reverse flex-md-row gap-1 w-100">
+                      <MyButton
+                        variant="outline-danger"
+                        text="Cancel"
+                        className="cancel-btn mb-3"
+                      />
+                      <MyButton
+                        variant="primary"
+                        text="Save & Continue"
+                        className="save-and-continue-btn"
+                        type="submit"
+                      />
+                    </div>
+                  </div>
+              
             </div>
           </div>
 
