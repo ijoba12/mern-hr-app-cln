@@ -9,7 +9,30 @@ import totalLeaves from "../assets/allLeaves.svg";
 import { useAuth } from "../context/AuthContext";
 
 const AdminSummary = () => {
- const {data} = useAuth()
+  const [data,setData] = useState([])
+  const token = localStorage.getItem("hr-token")
+
+//  const {data} = useAuth()
+ const getCounts = async ()=>{
+  try {
+    const req = await axios.get("https://mern-hr-app.onrender.com/api/count",{
+      headers:{
+        Authorization: `Bearer ${token}`,
+      }
+    })
+    // const res = await req.json();
+    console.log(req.data.eventLenght);
+
+    setData(req.data.eventLenght)
+    
+  } catch (error) {
+    
+  }
+}
+
+useEffect(()=>{
+  getCounts()
+},[])
   return (
     <>
       <main className="pt-5 admin-summary-wrapper">
