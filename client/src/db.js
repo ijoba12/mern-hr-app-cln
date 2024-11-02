@@ -453,3 +453,54 @@ export const departments = [
       img:remainingLeaves
     },
   ]
+  export const employeeRecentActTableData = [
+    {
+      id:1,
+      activity:"New Task Assigned",
+      description:"Website Project Update On Slack",
+      date:"Sep 21, 2024",
+      status:"Pending"
+    },
+    {
+      id:2,
+      activity:"Leave Request Approval",
+      description:"Leave approved for Sep 30 - Oct",
+      date:"Sep 21, 2024",
+      status:"In Progress"
+    },
+    {
+      id:3,
+      activity:"Leave Request Approval",
+      description:"Leave requested for Sep 30 - Oct",
+      date:"Sep 21, 2024",
+      status:"Approved"
+    },
+    {
+      id:4,
+      activity:"Leave Request",
+      description:"Leave requested for Sep 30 - Oct",
+      date:"Sep 21, 2024",
+      status:"In Progress"
+    },
+    {
+      id:5,
+      activity:"New Task Assigned",
+      description:"Website Project Update On Slack",
+      date:"Sep 21, 2024",
+      status:"Pending"
+    },
+    {
+      id:6,
+      activity:"New Task Assigned",
+      description:"Website Project Update On Slack",
+      date:"Sep 21, 2024",
+      status:"Approved"
+    },
+    {
+      id:7,
+      activity:"Leave Request",
+      description:"Leave requested for Sep 30 - Oct",
+      date:"Sep 21, 2024",
+      status:"In Progress"
+    }
+  ]
