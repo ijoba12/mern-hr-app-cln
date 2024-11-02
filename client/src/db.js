@@ -14,34 +14,12 @@ import photo4 from "./assets/taskTeamPhotoLadyAfro.svg"
 import inProgressLogo from "./assets/in-progress-logo.svg";
 import completedLogo from "./assets/completed-logo.svg";
 import plannedLogo from "./assets/planned-logo.svg";
-import allProjectsLogo from "./assets/all-projects-logo.svg"
+import allProjectsLogo from "./assets/all-projects-logo.svg";
+import plannedTasks from "./assets/planned-tasks.svg";
+import inProgress from "./assets/in-progress.svg";
+import remainingLeaves from "./assets/remaining-leaves.svg"
 
-export const employeeSidebarLinks = [
-  {
-    id: 1,
-    Icon: dashboardImg,
-    name: "Dashboard",
-    path: "",
-  },
-  {
-    id: 2,
-    Icon: taskboardImg,
-    name: "Taskboard",
-    path: "taskboard",
-  },
-  {
-    id: 3,
-    Icon: leaveboardImg,
-    name: "Leaveboard",
-    path: "leaveboard",
-  },
-  {
-    id: 4,
-    Icon: settingsImg,
-    name: "Settings",
-    path: "settings",
-  },
-];
+
 export const sidebarLinks = [
   {
     id: 1,
@@ -353,15 +331,15 @@ export const departments = [
       { id: 2,img:photo2,
         name:"Martin Odegaad",
         position:"Javascript fullstack dev", },
-      { id: 3,img:photo3,
-        name:"Bukayo Saka",
-        position:"Data Analyst" },
-      { id: 4,img:photo4,
-        name:"Thomas Partey",
-        position:"Cyber security", },
-      { id: 5, img:photo1,
-        name:"Declan rice",
-        position:"Product designer", }
+        { id: 3,img:photo3,
+          name:"Bukayo Saka",
+          position:"Data Analyst" },
+          { id: 4,img:photo4,
+            name:"Thomas Partey",
+            position:"Cyber security", },
+            { id: 5, img:photo1,
+              name:"Declan rice",
+              position:"Product designer", }
     ]
   },
   {
@@ -374,35 +352,35 @@ export const departments = [
       { id: 4,img:photo3,
         name:"Segio Ramos",
         position:"Art Director",},
-      { id: 5,img:photo4,
-        name:"Modrich",
-        position:"Marketer", },
-      { id: 6,img:photo1,
-        name:"Cristiano Ronaldo",
-        position:"Customer Rep", },
-      { id: 7, img:photo2,
-        name:"Jude Bellingham",
-        position:"customer rep",}
-    ]
-  },
-  {
-    id: 3,
-    name: "Admin",
-    employees: [
-      { id: 8,   img:photo3,
-        name:"Tomas Rosicky",
-        position:"Manager", },
-      { id: 9, img:photo4,
-        name:"Kanu Nwakwo",
-        position:"Art Director",},
-      { id: 10, img:photo1,
-        name:"Patrick Viera",
-        position:"Marketer", },
+        { id: 5,img:photo4,
+          name:"Modrich",
+          position:"Marketer", },
+          { id: 6,img:photo1,
+            name:"Cristiano Ronaldo",
+            position:"Customer Rep", },
+            { id: 7, img:photo2,
+              name:"Jude Bellingham",
+              position:"customer rep",}
+            ]
+          },
+          {
+            id: 3,
+            name: "Admin",
+            employees: [
+              { id: 8,   img:photo3,
+                name:"Tomas Rosicky",
+                position:"Manager", },
+                { id: 9, img:photo4,
+                  name:"Kanu Nwakwo",
+                  position:"Art Director",},
+                  { id: 10, img:photo1,
+                    name:"Patrick Viera",
+                    position:"Marketer", },
       { id: 11,img:photo2,
         name:"Thienry Henry",
         position:"Customer Rep", },
-      { id: 12, img:photo3,
-        name:"Ian Wright",
+        { id: 12, img:photo3,
+          name:"Ian Wright",
         position:"customer rep",}
     ]
   },
@@ -413,18 +391,65 @@ export const departments = [
       { id: 13,   img:photo4,
         name:"Arsene Wenger",
         position:"Manager", },
-      { id: 14, img:photo1,
-        name:"Jenns Lehmann",
-        position:"Art Director",},
-      { id: 15, img:photo2,
-        name:"Sol Campbell",
-        position:"Marketer", },
-      { id: 16,img:photo3,
-        name:"Roberto Carlos",
-        position:"Customer Rep", },
-      { id: 17,  img:photo4,
+        { id: 14, img:photo1,
+          name:"Jenns Lehmann",
+          position:"Art Director",},
+          { id: 15, img:photo2,
+            name:"Sol Campbell",
+            position:"Marketer", },
+            { id: 16,img:photo3,
+              name:"Roberto Carlos",
+              position:"Customer Rep", },
+              { id: 17,  img:photo4,
         name:"Cesc Fabregas",
         position:"customer rep",}
-    ]
-  },
-]
+      ]
+    },
+  ]
+  // employee DB
+  export const employeeSidebarLinks = [
+    {
+      id: 1,
+      Icon: dashboardImg,
+      name: "Dashboard",
+      path: "",
+    },
+    {
+      id: 2,
+      Icon: taskboardImg,
+      name: "Taskboard",
+      path: "taskboard",
+    },
+    {
+      id: 3,
+      Icon: leaveboardImg,
+      name: "Leaveboard",
+      path: "leaveboard",
+    },
+    {
+      id: 4,
+      Icon: settingsImg,
+      name: "Settings",
+      path: "settings",
+    },
+  ];
+  export const employeeSummaryLenght = [
+    {
+      id:1,
+      title:"Planned Tasks",
+      count:24,
+      img:plannedTasks
+    },
+    {
+      id:2,
+      title:"In Progress",
+      count:107,
+      img:inProgress
+    },
+    {
+      id:3,
+      title:"Remaining Leaves",
+      count:15,
+      img:remainingLeaves
+    },
+  ]
