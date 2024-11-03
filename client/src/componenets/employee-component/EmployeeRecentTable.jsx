@@ -2,10 +2,10 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Table from "react-bootstrap/Table";
-import { employeeRecentActTableData } from '../db';
-import "../styles/EmployeeRecentTable.css";
-import chevronRight from "../assets/chevron right.svg";
-import chevronLeft from "../assets/chevron-left.svg"
+import { employeeRecentActTableData } from '../../db';
+import "../../styles/EmployeeRecentTable.css"
+import chevronRight from "../../assets/chevron right.svg";
+import chevronLeft from "../../assets/chevron-left.svg"
 const EmployeeRecentTable = () => {
   return (
     <>

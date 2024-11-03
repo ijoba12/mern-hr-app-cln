@@ -3,7 +3,7 @@ import "../../styles/EMployeeSummary.css";
 import plusSign from "../../assets/plus.svg";
 import { Link } from "react-router-dom";
 import { employeeSummaryLenght } from "../../db";
-import EmployeeRecentTable from "../EmployeeRecentTable";
+import EmployeeRecentTable from "./EmployeeRecentTable";
 const EmployeeSummary = () => {
   return (
     <>

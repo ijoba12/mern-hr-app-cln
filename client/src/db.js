@@ -349,7 +349,7 @@ export const departments = [
       { id: 3,  img:photo2,
         name:"Carlo Ancelotti",
         position:"Manager", },
-      { id: 4,img:photo3,
+        { id: 4,img:photo3,
         name:"Segio Ramos",
         position:"Art Director",},
         { id: 5,img:photo4,
@@ -376,12 +376,12 @@ export const departments = [
                   { id: 10, img:photo1,
                     name:"Patrick Viera",
                     position:"Marketer", },
-      { id: 11,img:photo2,
+                    { id: 11,img:photo2,
         name:"Thienry Henry",
         position:"Customer Rep", },
         { id: 12, img:photo3,
           name:"Ian Wright",
-        position:"customer rep",}
+          position:"customer rep",}
     ]
   },
   {
@@ -502,5 +502,126 @@ export const departments = [
       description:"Leave requested for Sep 30 - Oct",
       date:"Sep 21, 2024",
       status:"In Progress"
+    }
+  ]
+  export const employeeTaskLenght = [
+    {
+      id:1,
+      title:"Planned Tasks",
+      count:24,
+      img:plannedTasks
+    },
+    {
+      id:2,
+      title:"In Progress",
+      count:107,
+      img:inProgress
+    },
+    {
+      id:3,
+      title:"Completed Tasks",
+      count:15,
+      img:totalTasksImg
+    }
+  ]
+  export const employeetaskBoardTableData = [
+    {
+      id:1,
+      title:"Website Project Update On Slack",
+      teamPhoto:{
+        teamPhoto1:photo1,
+        teamPhoto2:photo2,
+        teamPhoto3:photo3,
+        teamPhoto4:photo4
+      },
+      duration:{
+        start:"03 Mar 2023",
+        end:"10 Mar 2023"
+      },
+      action:"Planned"
+    },
+    {
+      id:2,
+      title:"Productize Beta Testing",
+      teamPhoto:{
+        teamPhoto1:photo1,
+        teamPhoto2:photo2,
+        teamPhoto3:photo3
+      },
+      duration:{
+        start:"03 Mar 2023",
+        end:"10 Mar 2023"
+      },
+      action:"Completed"
+    },
+    {
+      id:3,
+      title:"Website Project Update On Slack",
+      teamPhoto:{
+        teamPhoto1:photo1,
+        teamPhoto2:photo2   
+      },
+      duration:{
+        start:"03 Mar 2023",
+        end:"10 Mar 2023"
+      },
+      action:"In progress"
+    },
+    {
+      id:4,
+      title:"Website Project Update On Slack",
+      teamPhoto:{
+        teamPhoto1:photo1,
+        teamPhoto2:photo2,
+        teamPhoto3:photo3,
+        teamPhoto4:photo4   
+      },
+      duration:{
+        start:"03 Mar 2023",
+        end:"10 Mar 2023"
+      },
+      action:"Planned"
+    },
+    {
+      id:5,
+      title:"Productize Beta Testing",
+      teamPhoto:{
+        teamPhoto1:photo1,
+        teamPhoto2:photo2,
+        teamPhoto3:photo3
+      },
+      duration:{
+        start:"03 Mar 2023",
+        end:"10 Mar 2023"
+      },
+      action:"Completed"
+    },
+    {
+      id:6,
+      title:"Website Project Update On Slack",
+      teamPhoto:{
+        teamPhoto1:photo1,
+        teamPhoto2:photo2   
+      },
+      duration:{
+        start:"03 Mar 2023",
+        end:"10 Mar 2023"
+      },
+      action:"In progress"
+    },
+    {
+      id:7,
+      title:"Website Project Update On Slack",
+      teamPhoto:{
+        teamPhoto1:photo1,
+        teamPhoto2:photo2,
+        teamPhoto3:photo3,
+        teamPhoto4:photo4
+      },
+      duration:{
+        start:"03 Mar 2023",
+        end:"10 Mar 2023"
+      },
+      action:"Planned"
     }
   ]
