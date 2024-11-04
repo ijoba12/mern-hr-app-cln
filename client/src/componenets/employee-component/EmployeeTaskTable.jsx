@@ -3,6 +3,8 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Table from "react-bootstrap/Table";
 import { employeetaskBoardTableData } from '../../db';
+import { MdGridView } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
 
 const EmployeeTaskBoard = () => {
   return (
@@ -84,8 +86,8 @@ const EmployeeTaskBoard = () => {
                   </td>
                   <div className="d-flex gap-2">
 
-                  <p className="text-success" role="button" >view</p>
-                  <p className="text-danger" role="button">delete</p>
+                  <p className="text-success" role="button" > <MdGridView fontSize={30}/></p>
+                  <p className="text-danger" role="button"><MdDelete  fontSize={30} /></p>
                   </div>
                 </tr>
               </tbody>

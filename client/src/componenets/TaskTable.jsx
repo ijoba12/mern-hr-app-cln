@@ -8,6 +8,10 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import toast from "react-hot-toast"
 import { useAuth } from "../context/AuthContext";
+import { MdGridView } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
+
+
 
 const TaskTable = () => {
   const [data,setData] = useState([]);
@@ -169,8 +173,12 @@ const TaskTable = () => {
                   </td>
                   <div className="d-flex gap-2">
 
-                  <p className="text-success" role="button" onClick={() => getTaskById(task._id)}>view</p>
-                  <p className="text-danger" role="button" onClick={()=>deleteTask(task._id)}>delete</p>
+                  <p className="text-success" role="button" onClick={() => getTaskById(task._id)}>
+                  <MdGridView fontSize={30}/>
+
+                  </p>
+                  <p className="text-danger" role="button" onClick={()=>deleteTask(task._id)}><MdDelete  fontSize={30} />
+                  </p>
                   </div>
                 </tr>
               </tbody>
