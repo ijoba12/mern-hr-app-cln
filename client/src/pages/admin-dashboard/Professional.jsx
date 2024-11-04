@@ -64,7 +64,7 @@ const Professional = () => {
                   className="mb-3 col-lg-6 ps-0 "
                   controlId="exampleForm.ControlInput1"
                 >
-                  <Form.Label>Office of Employment</Form.Label>
+                  <Form.Label><span className="text-danger">*</span> Office of Employment</Form.Label>
                   <Form.Control type="text" placeholder="Enter" {...register("officeOfEmployment", { required: true })}
                   />
                   <span className="text-danger fs-6 text-start fw-bold">
@@ -76,7 +76,7 @@ const Professional = () => {
                   className="mb-3 ps-0 col-lg-6"
                   controlId="exampleForm.ControlInput2"
                 >
-                  <Form.Label>Job Title</Form.Label>
+                  <Form.Label><span className="text-danger">*</span> Job Title</Form.Label>
                   <Form.Control type="text" placeholder="Enter Title"  {...register("jobTitle", { required: true })}/>
                   <span className="text-danger fs-6 text-start fw-bold">
                     {" "}
@@ -89,7 +89,7 @@ const Professional = () => {
               {/* dept and employment status */}
               <div className="row justify-content-between mb-4">
                 <Form.Group className="mb-3 col-lg-6 ps-0">
-                  <Form.Label htmlFor="">Department</Form.Label>
+                  <Form.Label htmlFor=""><span className="text-danger">*</span> Department</Form.Label>
                   <Form.Select id="" className="personal-info-wrapper-select"  {...register("department", { required: true })}>
                     <option disabled selected value="">
                       Select
@@ -112,7 +112,7 @@ const Professional = () => {
                   </span>
                 </Form.Group>
                 <Form.Group className="mb-3 col-lg-6 ps-0">
-                  <Form.Label htmlFor="">Employment Status</Form.Label>
+                  <Form.Label htmlFor=""><span className="text-danger">*</span> Employment Status</Form.Label>
                   <Form.Select id="" className="personal-info-wrapper-select" {...register("employmentStatus", { required: true })}>
                     <option disabled selected>
                       Select

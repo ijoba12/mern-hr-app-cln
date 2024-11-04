@@ -17,7 +17,11 @@ import plannedLogo from "./assets/planned-logo.svg";
 import allProjectsLogo from "./assets/all-projects-logo.svg";
 import plannedTasks from "./assets/planned-tasks.svg";
 import inProgress from "./assets/in-progress.svg";
-import remainingLeaves from "./assets/remaining-leaves.svg"
+import remainingLeaves from "./assets/remaining-leaves.svg";
+import sickLeave from "./assets/sickleave.jpg";
+import casualLeave from "./assets/casual leave.png";
+import annualLeave from "./assets/annual leave.jpeg";
+import generalLeaveLogo from "./assets/general leave logo.webp"
 
 
 export const sidebarLinks = [
@@ -64,22 +68,26 @@ export const leaveLenght = [
   {
     id:1,
     title:"HR/Admin",
-    count:3
+    count:3,
+    img:generalLeaveLogo
   },
   {
     id:2,
     title:"Product",
-    count:5
+    count:5,
+    img:generalLeaveLogo
   },
   {
     id:3,
     title:"Marketing",
-    count:4
+    count:4,
+    img:generalLeaveLogo
   },
   {
     id:4,
     title:"Operations",
-    count:6
+    count:6,
+    img:generalLeaveLogo
     },
 ]
 export const taskLenght = [
@@ -624,4 +632,60 @@ export const departments = [
       },
       action:"Planned"
     }
+  ]
+
+  export const employeeLeaveLenght = [
+    {
+      id:1,
+      title:"Annual Leave Remain",
+      count:"12/20",
+      img:annualLeave
+    },
+    {
+      id:2,
+      title:"Sick Leave Remain",
+      count:"5/10",
+      img:sickLeave
+    },
+    {
+      id:3,
+      title:"Casual Leave Remain",
+      count:"5/10",
+      img:casualLeave
+    }
+  ]
+
+  export const employeeLeaveHistory = [
+    {
+      id:1,
+      leaveType:"Casual Leave",
+      startDate:"03 Nov 2023",
+      endDate:"14 Nov 2024",
+      days:"6 Days",
+      status:"Pending"
+    },
+    {
+      id:2,
+      leaveType:"Annual Leave",
+      startDate:"03 Nov 2023",
+      endDate:"14 Nov 2024",
+      days:"6 Days",
+      status:"Pending"
+    },
+    {
+      id:3,
+      leaveType:"Sick Leave",
+      startDate:"03 Nov 2023",
+      endDate:"14 Nov 2024",
+      days:"6 Days",
+      status:"Appproved"
+    },
+    {
+      id:4,
+      leaveType:"Casual Leave",
+      startDate:"03 Nov 2023",
+      endDate:"14 Nov 2024",
+      days:"6 Days",
+      status:"Declined"
+    },
   ]

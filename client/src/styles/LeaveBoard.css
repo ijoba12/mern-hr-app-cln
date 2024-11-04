@@ -38,6 +38,12 @@
   font-weight: 700;
   font-size: 50px;
 }
+.leave-board-wrapper-inner  img {
+  width: 72.5px;
+  height: 74.64px;
+  border-radius: 8.53px;
+   
+ }
 
 @media (max-width: 765px) {
   .leave-board-wrapper-inner {

@@ -35,7 +35,7 @@ const Salary = () => {
                   className="mb-3 col-lg-6 ps-0 "
                   controlId="exampleForm.ControlInput1"
                 >
-                  <Form.Label>Amount</Form.Label>
+                  <Form.Label><span className="text-danger">*</span> Amount</Form.Label>
                   <Form.Control type="number" placeholder="Enter" {...register("salary", { required: true })}/>
                   <span className="text-danger fs-6 text-start fw-bold">
                     {" "}
@@ -46,7 +46,7 @@ const Salary = () => {
                   className="mb-3 ps-0 col-lg-6"
                   controlId="exampleForm.ControlInput2"
                 >
-                  <Form.Label>Start Date</Form.Label>
+                  <Form.Label><span className="text-danger">*</span> Start Date</Form.Label>
                   <Form.Control type="text" placeholder="format: day-month-year"{...register("startDate", { required: true })} />
                   <span className="text-danger fs-6 text-start fw-bold">
                     {" "}

@@ -24,7 +24,7 @@ const EmployeeTaskBoard = () => {
               return (
                 <div className="employee-task-event-wrapper" key={id}>
                   <div className="employee-task-event-wrapper-inner d-flex justify-content-between align-items-center">
-                    <div className="">
+                    <div>
                       <h5> {title} </h5>
                       <h1> {count} </h1>
                     </div>

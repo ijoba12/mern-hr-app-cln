@@ -85,7 +85,7 @@ const ForgotPassword = () => {
             </div>
           </div>
           <Form.Group className="" controlId="formBasicEmail">
-            <h3 className="py-2">Forgot password</h3>
+            <h3 className="py-2"><span className="text-danger fs-5">*</span> Forgot password</h3>
             <Form.Control
               className="input"
               type="email"

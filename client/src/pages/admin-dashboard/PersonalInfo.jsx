@@ -84,7 +84,7 @@ const PersonalInfo = () => {
                   className="mb-3 col-lg-6 ps-0 "
                   controlId="exampleForm.ControlInput1"
                 >
-                  <Form.Label>First Name</Form.Label>
+                  <Form.Label> <span className="text-danger">*</span> First Name</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="Enter First Name"
@@ -99,7 +99,7 @@ const PersonalInfo = () => {
                   className="mb-3 ps-0 col-lg-6"
                   controlId="exampleForm.ControlInput2"
                 >
-                  <Form.Label>Last Name</Form.Label>
+                  <Form.Label><span className="text-danger">*</span> Last Name</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="Enter Last Name"
@@ -117,7 +117,7 @@ const PersonalInfo = () => {
                   className="mb-3 col-lg-6 ps-0 "
                   controlId="exampleForm.ControlInput1"
                 >
-                  <Form.Label>Mobile Number</Form.Label>
+                  <Form.Label><span className="text-danger">*</span> Mobile Number</Form.Label>
                   <Form.Control
                     type="tel"
                     placeholder="Enter Number"
@@ -132,7 +132,7 @@ const PersonalInfo = () => {
                   className="mb-3 ps-0 col-lg-6"
                   controlId="exampleForm.ControlInput3"
                 >
-                  <Form.Label>Email Address</Form.Label>
+                  <Form.Label> <span className="text-danger">*</span> Email Address</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="Enter Email Address"
@@ -150,7 +150,7 @@ const PersonalInfo = () => {
                   className="mb-3 col-lg-6 ps-0 "
                   controlId="exampleForm.ControlInput1"
                 >
-                  <Form.Label>Date of Birth</Form.Label>
+                  <Form.Label><span className="text-danger">*</span> Date of Birth</Form.Label>
                   <Form.Control
                     type="date"
                     placeholder="Select Date"
@@ -162,7 +162,7 @@ const PersonalInfo = () => {
                   </span>
                 </Form.Group>
                 <Form.Group className="mb-3 col-lg-6 ps-0">
-                  <Form.Label htmlFor="">Marital Status</Form.Label>
+                  <Form.Label htmlFor=""><span className="text-danger">*</span> Marital Status</Form.Label>
                   <Form.Select
                     id=""
                     className="personal-info-wrapper-select"
@@ -183,7 +183,7 @@ const PersonalInfo = () => {
               {/* gender and address */}
               <div className="row justify-content-between mb-4">
                 <Form.Group className="mb-3 col-lg-6 ps-0">
-                  <Form.Label htmlFor="">Gender</Form.Label>
+                  <Form.Label htmlFor=""><span className="text-danger">*</span> Gender</Form.Label>
                   <Form.Select
                     id=""
                     className="personal-info-wrapper-select"
@@ -204,7 +204,7 @@ const PersonalInfo = () => {
                   className="mb-3 col-lg-6 ps-0"
                   controlId="exampleForm.ControlInput1"
                 >
-                  <Form.Label>Address</Form.Label>
+                  <Form.Label><span className="text-danger">*</span> Address</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="Enter Address"
@@ -218,7 +218,7 @@ const PersonalInfo = () => {
               </div>
               <div className="row">
                 <div className="col-lg-12 ps-0">
-                  <h3>Thumbnail</h3>
+                  <h3><span className="text-danger">*</span> Thumbnail</h3>
                   <div className="d-flex gap-2 align-items-center">
                     <img src={exclamationImg} alt="" />
                     <p className="pt-3">
