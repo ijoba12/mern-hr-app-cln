@@ -129,7 +129,7 @@ const navigate = useNavigate()
                 className="mb-3 col-lg-6 ps-0 "
                 controlId="exampleForm.ControlInput1"
               >
-                <Form.Label><span className="text-danger">*</span> Password</Form.Label>
+                <Form.Label>Password <span className="text-danger">*</span> </Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Enter Password"
@@ -144,7 +144,7 @@ const navigate = useNavigate()
                 className="mb-3 ps-0 col-lg-6"
                 controlId="exampleForm.ControlInput2"
               >
-                <Form.Label><span className="text-danger">*</span> Confirm Password</Form.Label>
+                <Form.Label>Confirm Password <span className="text-danger">*</span> </Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Re Enter Password"

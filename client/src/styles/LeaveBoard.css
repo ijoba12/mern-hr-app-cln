@@ -45,6 +45,22 @@
    
  }
 
+ .request-leave-btn {
+  max-width: 172px;
+  max-height: 40px;
+  border-radius: 4px;
+  background-color: rgba(52, 57, 202, 1);
+  padding: 8px 16px 8px 16px;
+  border: none;
+}
+
+.request-leave-link {
+  font-family: var(--ff-inter);
+  font-weight: 500;
+  font-size: 16px;
+  color: rgba(243, 242, 251, 1);
+}
+
 @media (max-width: 765px) {
   .leave-board-wrapper-inner {
     border: 3px solid rgba(241, 242, 243, 1);

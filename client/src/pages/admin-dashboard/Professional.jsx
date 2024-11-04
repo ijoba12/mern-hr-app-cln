@@ -4,12 +4,11 @@ import Nav from "../../layout/Nav";
 import Form from "react-bootstrap/Form";
 import MyButton from "../../componenets/MyButton";
 import axios from "axios";
-
-
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { professional } from "../../utils/ValidationSchema";
 import toast from "react-hot-toast";
+
 const Professional = () => {
   const [departments, setDepartments] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -64,7 +63,7 @@ const Professional = () => {
                   className="mb-3 col-lg-6 ps-0 "
                   controlId="exampleForm.ControlInput1"
                 >
-                  <Form.Label><span className="text-danger">*</span> Office of Employment</Form.Label>
+                  <Form.Label>Office of Employment <span className="text-danger">*</span> </Form.Label>
                   <Form.Control type="text" placeholder="Enter" {...register("officeOfEmployment", { required: true })}
                   />
                   <span className="text-danger fs-6 text-start fw-bold">
@@ -76,7 +75,7 @@ const Professional = () => {
                   className="mb-3 ps-0 col-lg-6"
                   controlId="exampleForm.ControlInput2"
                 >
-                  <Form.Label><span className="text-danger">*</span> Job Title</Form.Label>
+                  <Form.Label>Job Title <span className="text-danger">*</span> </Form.Label>
                   <Form.Control type="text" placeholder="Enter Title"  {...register("jobTitle", { required: true })}/>
                   <span className="text-danger fs-6 text-start fw-bold">
                     {" "}
@@ -87,9 +86,10 @@ const Professional = () => {
               
               
               {/* dept and employment status */}
+              {/* start ================================================ */}
               <div className="row justify-content-between mb-4">
                 <Form.Group className="mb-3 col-lg-6 ps-0">
-                  <Form.Label htmlFor=""><span className="text-danger">*</span> Department</Form.Label>
+                  <Form.Label htmlFor="">Department <span className="text-danger">*</span> </Form.Label>
                   <Form.Select id="" className="personal-info-wrapper-select"  {...register("department", { required: true })}>
                     <option disabled selected value="">
                       Select
@@ -111,8 +111,9 @@ const Professional = () => {
                     {errors.department?.message}
                   </span>
                 </Form.Group>
+                {/* end ====================================================*/}
                 <Form.Group className="mb-3 col-lg-6 ps-0">
-                  <Form.Label htmlFor=""><span className="text-danger">*</span> Employment Status</Form.Label>
+                  <Form.Label htmlFor="">Employment Status <span className="text-danger">*</span> </Form.Label>
                   <Form.Select id="" className="personal-info-wrapper-select" {...register("employmentStatus", { required: true })}>
                     <option disabled selected>
                       Select

@@ -174,10 +174,10 @@ const TaskTable = () => {
                   <div className="d-flex gap-2">
 
                   <p className="text-success" role="button" onClick={() => getTaskById(task._id)}>
-                  <MdGridView fontSize={30}/>
+                  <MdGridView fontSize={22}/>
 
                   </p>
-                  <p className="text-danger" role="button" onClick={()=>deleteTask(task._id)}><MdDelete  fontSize={30} />
+                  <p className="text-danger" role="button" onClick={()=>deleteTask(task._id)}><MdDelete  fontSize={22} />
                   </p>
                   </div>
                 </tr>

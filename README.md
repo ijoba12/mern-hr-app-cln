@@ -30,9 +30,9 @@ This is a simple responsive mern stack Hr app which was used to teach my trainee
 
 The project has an admin dashboard(for employees with admin role) and employee dashboard(for registered employees only).
 
-Only the admin can register employees,approve leaves,create tasks,create teams.
+Only the admin can register employees,approve leaves,create tasks,create teams,see all tasks,see all employees.
 
-Employees only sign in,chnage password,update profile photo,apply for leave.
+Employees only sign in,reset password,update profile,apply for leave.
 
 #### Tools Used
 

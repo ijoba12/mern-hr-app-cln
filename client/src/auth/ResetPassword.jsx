@@ -116,7 +116,7 @@ const ResetPassword = () => {
                 onClick={toggleReveal2}
                 role="button"
                 className=" position-absolute end-0 pt-2 pe-1"
-                src={isReveal2 ? vissibilityOffIcon : vissibilityOnIcon}
+                src={isReveal2 ? vissibilityOnIcon :  vissibilityOffIcon}
                 alt="eye-open-logo"
               />
               <Form.Control

@@ -124,7 +124,7 @@ const SignIn = () => {
                 onClick={toggleReveal}
                 role="button"
                 className=" position-absolute end-0 pt-2 pe-1"
-                src={isReveal ? vissibilityOffIcon : vissibilityOnIcon}
+                src={isReveal ? vissibilityOnIcon : vissibilityOffIcon }
                 alt="eye-open-logo"
               />
               <Form.Control
