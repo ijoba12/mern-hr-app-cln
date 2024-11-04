@@ -103,7 +103,7 @@ const SignIn = () => {
             </h3>
           </div>
           <Form.Group className="" controlId="formBasicEmail">
-            <Form.Label className="label"><span className="text-danger">*</span> Email</Form.Label>
+            <Form.Label className="label">Email <span className="text-danger fs-5">*</span></Form.Label>
             <Form.Control
               className="input"
               type="email"
@@ -114,7 +114,7 @@ const SignIn = () => {
           </Form.Group>
           <Form.Group className="" controlId="formBasicPassword">
             <div className="d-flex justify-content-between">
-              <Form.Label className="label"><span className="text-danger">*</span> Password</Form.Label>
+              <Form.Label className="label">Password <span className="text-danger fs-5">*</span></Form.Label>
               <Link to="/auth/forgot-password" className="forgot-password">
                 Forgot Password?
               </Link>
