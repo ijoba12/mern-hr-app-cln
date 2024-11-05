@@ -26,7 +26,7 @@ const NewTaskModal = (props) => {
       const fetchSuggestions = async () => {
         try {
           const response = await axios.get(
-            `https://mern-hr-app.onrender.com/api/employee/users/search?query=${searchQuery}`,
+            `http://localhost:4040/api/employee/users/search?query=${searchQuery}`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -72,7 +72,7 @@ const NewTaskModal = (props) => {
     try {
       setIsSubmitting(true)
       const req = await axios.post(
-        "https://mern-hr-app.onrender.com/api/task/tasks",
+        "http://localhost:7030/api/task/tasks",
         newTask,
         {
           headers: {

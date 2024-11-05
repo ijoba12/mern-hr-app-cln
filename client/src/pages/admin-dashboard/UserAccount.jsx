@@ -83,7 +83,7 @@ const navigate = useNavigate()
     // }
     try {
       const response = await axios.post(
-        "https://mern-hr-app.onrender.com/api/auth/signup",
+        "http://localhost:7030/api/auth/signup",
         finalPayload,
         {
           headers: {

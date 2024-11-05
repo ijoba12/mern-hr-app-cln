@@ -8,12 +8,12 @@ import taskRoute from "./routes/taskRoute.js";
 import allSchemaCount from "./routes/allSchemaLength.js"
 import fileUpload from "express-fileupload"; 
 import { v2 as cloudinary } from 'cloudinary';
-
 import cors from "cors"
+
 const app = express();
 
 
-const port = process.env.PORT || 4040; 
+const port = process.env.PORT || 7030; 
 dotenv.config();
 
 app.use(cors())

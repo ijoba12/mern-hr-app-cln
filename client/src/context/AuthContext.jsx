@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
 
   const getCounts = async ()=>{
     try {
-      const req = await axios.get("https://mern-hr-app.onrender.com/api/count",{
+      const req = await axios.get("http://localhost:4040/api/count",{
         headers:{
           Authorization: `Bearer ${token}`,
         }
@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }) => {
       try {
         if (token) {
           const request = await axios.get(
-            "https://mern-hr-app.onrender.com/api/auth/verify",
+            "http://localhost:4040/api/auth/verify",
             {
               headers: {
                 Authorization: `Bearer ${token}`,

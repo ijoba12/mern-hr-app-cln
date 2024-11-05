@@ -28,7 +28,7 @@ const TaskTable = () => {
       setIsLoading(true)
       setError(null); 
 
-      const req = await axios.get("https://mern-hr-app.onrender.com/api/task",{
+      const req = await axios.get("http://localhost:7030/api/task",{
         headers:{
           Authorization: `Bearer ${token}`,
         }

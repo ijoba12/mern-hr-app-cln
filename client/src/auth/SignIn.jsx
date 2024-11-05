@@ -27,15 +27,15 @@ const SignIn = () => {
   } = useForm({
     resolver: yupResolver(signInSchema),
     defaultValues: {
-      email: "oladapomubarak@gmail.com",
-      password: "eggys1234",
+      email: "divinefavourjoshua03@gmail.com",
+      password: "12345678",
     },
     signInSchema
   });
   async function handleSignIn(data) {
     setIsClicked(true)
     try {
-      const req = await fetch("https://mern-hr-app.onrender.com/api/auth/signin",{
+      const req = await fetch("http://localhost:7030/api/auth/signin",{
         method:"POST",
         headers:{
           "Content-Type":"application/json"
