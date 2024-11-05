@@ -72,7 +72,7 @@ const NewTaskModal = (props) => {
     try {
       setIsSubmitting(true)
       const req = await axios.post(
-        "http://localhost:7030/api/task/tasks",
+        "https://mern-hr-app-cln.onrender.com/api/task/tasks",
         newTask,
         {
           headers: {

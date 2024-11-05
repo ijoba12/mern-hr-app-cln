@@ -15,7 +15,7 @@ const AdminSummary = () => {
 //  const {data} = useAuth()
  const getCounts = async ()=>{
   try {
-    const req = await axios.get("http://localhost:7030/api/count",{
+    const req = await axios.get("https://mern-hr-app-cln.onrender.com/api/count",{
       headers:{
         Authorization: `Bearer ${token}`,
       }

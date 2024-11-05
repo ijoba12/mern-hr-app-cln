@@ -28,7 +28,7 @@ const TaskTable = () => {
       setIsLoading(true)
       setError(null); 
 
-      const req = await axios.get("http://localhost:7030/api/task",{
+      const req = await axios.get("https://mern-hr-app-cln.onrender.com/api/task",{
         headers:{
           Authorization: `Bearer ${token}`,
         }
@@ -47,7 +47,7 @@ const TaskTable = () => {
     try {
       setIsLoading(true);
       setError(null);
-      const req = await axios.get(`https://mern-hr-app.onrender.com/api/task/${id}`,{
+      const req = await axios.get(`https://mern-hr-app-cln.onrender.com/api/task/${id}`,{
         headers:{
           Authorization: `Bearer ${token}`,
         }
@@ -66,7 +66,7 @@ const TaskTable = () => {
     try {
       setIsLoading(true);
       setError(null);
-      const req = await axios.delete(`https://mern-hr-app.onrender.com/api/task/${id}`,{
+      const req = await axios.delete(`https://mern-hr-app-cln.onrender.com/api/task/${id}`,{
         headers:{
           Authorization: `Bearer ${token}`,
         }

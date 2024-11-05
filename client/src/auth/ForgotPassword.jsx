@@ -26,7 +26,7 @@ const ForgotPassword = () => {
     setIsClicked(true)
 
    try {
-    const req = await fetch("http://localhost:7030/api/auth/forgotpassword",{
+    const req = await fetch("https://mern-hr-app-cln.onrender.com/api/auth/forgotpassword",{
       method:"POST",
       headers:{
         "Content-Type":"application/json"

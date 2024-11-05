@@ -35,7 +35,7 @@ const ResetPassword = () => {
 
     try {
       const req = await fetch(
-        `http://localhost:7030/api/auth/resetpassword/${resetToken}`,
+        `https://mern-hr-app-cln.onrender.com/api/auth/resetpassword/${resetToken}`,
         {
           method: "PUT",
           headers: {

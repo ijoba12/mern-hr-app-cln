@@ -15,7 +15,7 @@ const Teams = () => {
   const getDepts = async () => {
     try {
       const req = await axios.get(
-        "http://localhost:7030/api/department/all-departments",
+        "https://mern-hr-app-cln.onrender.com/api/department/all-departments",
         {
           headers: {
             Authorization: `Bearer ${token}`,

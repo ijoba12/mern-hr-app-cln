@@ -11,7 +11,7 @@ const EmployeeSettings = () => {
   useEffect(() => {
     async function userProfile() {
       try {
-        const req = await axios.get("http://localhost:7030/employee/user/profile", {
+        const req = await axios.get("https://mern-hr-app-cln.onrender.com/employee/user/profile", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
