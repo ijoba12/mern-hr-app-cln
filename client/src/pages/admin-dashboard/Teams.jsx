@@ -57,11 +57,11 @@ const Teams = () => {
           <div className=" x row justify-content-between gap-5">
             {dept?.map((dept) => {
               return (
-                <div key={dept._id} className="col-lg-5  border p-3 teams-wrapper-map">
+                <div key={dept?._id} className="col-lg-5  border p-3 teams-wrapper-map">
                   <div className="d-flex justify-content-between align-items-center border-bottom border-1">
                     <div>
                       <h4> {dept?.name} Department </h4>
-                      <p> {dept.members.length} Members</p>
+                      <p> {dept?.members?.length} Members</p>
                     </div>
                     <Link onClick={() => getDeptById(dept._id)}>View All</Link>
                   </div>
@@ -69,13 +69,13 @@ const Teams = () => {
                     <div className="manager-info d-flex gap-1 pt-4 ">
                       <div className="teams-wrapper-employees-profile-pic">
                         <img
-                          src={dept.manager.profileImage}
-                          alt={`${dept.manager.fullName}'s profile`}
+                          src={dept?.manager?.profileImage}
+                          alt={`${dept?.manager?.fullName}'s profile`}
                         />
                       </div>
                       <div>
                         <div className="d-flex flex-column">
-                          <span className="teams-wrapper-employees-span-1">{dept.manager.fullName}</span>
+                          <span className="teams-wrapper-employees-span-1">{dept?.manager?.fullName}</span>
                           <span className="teams-wrapper-employees-span-2">Manager</span>
                         </div>
                       </div>
@@ -86,7 +86,7 @@ const Teams = () => {
                       {dept?.members.slice(0,4).map((employee) => {
                         return (
                           <div
-                            key={employee._id}
+                            key={employee?._id}
                             className="d-flex justify-content-between"
                           >
                             <div className="d-flex align-items-center gap-2 my-2">
@@ -141,7 +141,7 @@ const Teams = () => {
               <div className="d-flex justify-content-between">
                 <div className="teams-wrapper-employees-profile-pic">
 
-                <img src={depts.profileImage} alt="" />
+                <img src={depts?.profileImage} alt="" />
                 </div>
                 <h5> {depts?.fullName} </h5>
                 <div className="d-flex gap-5">

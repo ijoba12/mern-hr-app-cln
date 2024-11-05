@@ -1,11 +1,35 @@
-import React from "react";
+import React, { useEffect,useState } from "react";
 import "../../styles/Settings.css";
 import Form from "react-bootstrap/Form";
 import profilePic from "../../assets/taskTeamPhotoLady.svg";
 import MyButton from "../../componenets/MyButton";
-import {Link} from "react-router-dom"
+import {Link} from "react-router-dom";
+import axios from "axios";
+
 
 const Settings = () => {
+  const [profile, setProfile] = useState({});
+  const token = localStorage.getItem("hr-token")
+  useEffect(() => {
+    async function userProfile() {
+      try {
+        const req = await axios.get("http://localhost:4040/api/employee/user/profile", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (req.data.success) {
+          setProfile(req.data.employee);
+        } else {
+          console.error(req.data.errMsg);
+        }
+      } catch (error) {
+        console.error("Error fetching profile:", error);
+      }
+    }
+    userProfile();
+  }, [token]);
   return (
     <>
       <main className="pt-5 settings-wrapper">
@@ -26,8 +50,8 @@ const Settings = () => {
                   className="mb-3"
                   controlId="exampleForm.ControlInput1"
                 >
-                  <Form.Label className="settings-form-label" >Full Name</Form.Label>
-                  <Form.Control className="section-form-input" type="text" placeholder="Eggys" />
+                  <Form.Label className="settings-form-label">Full Name</Form.Label>
+                  <Form.Control className="section-form-input" type="text" placeholder="Eggys" disabled  value={profile.fullName || ''}/>
                 </Form.Group>
                 <Form.Group
                   className="mb-3"
@@ -36,9 +60,9 @@ const Settings = () => {
                   <div className="d-flex justify-content-between">
 
                   <Form.Label className="settings-form-label">Email Address</Form.Label>
-                  <Link>Change Account Email</Link>
+                  {/* <Link>Change Account Email</Link> */}
                   </div>
-                  <Form.Control className="section-form-input" type="email" placeholder="demo@account.com" />
+                  <Form.Control className="section-form-input" type="email" placeholder="demo@account.com" disabled value={profile.email || ''} />
                 </Form.Group>
                
                 </div>
@@ -46,7 +70,7 @@ const Settings = () => {
           </div>
           {/* security */}
           <div className="row pt-4 justify-content-between">
-            <div className="col-md-4">
+            {/* <div className="col-md-4">
               <h2 className="settings-section-2-h2">Security</h2>
             </div>
             <div className="col-md-7">
@@ -58,12 +82,12 @@ const Settings = () => {
                   <div className="d-flex justify-content-between">
 
                   <Form.Label className="settings-form-label" >Password</Form.Label>
-                  <Link>Change Account Email</Link>
+                  <Link>Change Password</Link>
                   </div>
-                  <Form.Control className="section-form-input" type="password" placeholder="xxxxxxxxxxx" />
+                  <Form.Control className="section-form-input" type="password" placeholder="xxxxxxxxxxx"  value={profile.password || ''}/>
                 </Form.Group>
               </div>
-            </div>
+            </div> */}
           </div>
           {/* upload photo */}
           <div className="row pt-4 justify-content-between">
@@ -73,7 +97,7 @@ const Settings = () => {
             <div className="col-md-7">
               <div>
                 <h6>Profile pic</h6>
-                <img src={profilePic} alt="profile-pic" />
+                <img src={profile.profileImage || profilePic} alt="profile-pic" />
                 <p>Your profile pic will be visible next to your name in your profile.  Your image should be at least 200x200px and must be in JPG or PNG format.</p>
               </div>
               

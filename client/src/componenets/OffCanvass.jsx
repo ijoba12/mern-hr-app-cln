@@ -9,6 +9,8 @@ import arrowDown from "../assets/arrow-down-logo.svg";
 import { NavLink } from "react-router-dom";
 import menuImg from "../assets/menu.svg";
 import { useAuth } from "../context/AuthContext";
+import { IoMdLogOut } from "react-icons/io";
+
 
 const OffCanvass = ({ name, ...props }) => {
   const [show, setShow] = useState(false);
@@ -111,7 +113,8 @@ const OffCanvass = ({ name, ...props }) => {
               onClick={logout}
               className="ps-4 pt-5 text-danger fs-4"
             >
-              Logout
+             <IoMdLogOut className="mb-1"/>
+             Logout
             </p>
           </Offcanvas.Body>
         </Offcanvas>

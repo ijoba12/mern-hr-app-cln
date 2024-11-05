@@ -60,14 +60,12 @@ export const createTask = async (req, res) => {
         errors: {},
       };
 
-      // Loop through the validation errors to provide detailed messages
       for (const field in error.errors) {
         errorResponse.errors[field] = {
           message: error.errors[field].message,
           value: error.errors[field].value,
         };
 
-        // If the error is related to an enum, you can provide additional details
         if (error.errors[field].kind === "enum") {
           errorResponse.errors[field].enumValues =
             error.errors[field].properties.enumValues;
@@ -79,7 +77,7 @@ export const createTask = async (req, res) => {
         }
       }
 
-      return res.status(400).json(errorResponse); // Send detailed validation errors
+      return res.status(400).json(errorResponse); 
     }
     return res
       .status(500)
@@ -192,5 +190,55 @@ export const getTaskById = async (req, res) => {
   } catch (error) {
     console.error(error.message);
     res.status(500).json({ success: false, errMsg: "Server error." });
+  }
+};
+// employee's assigned task
+export const getAssignedTasks = async (req, res) => {
+  const { userId } = req.user; 
+
+  try {
+    const tasks = await Task.find({ assignedMembers: userId })
+      .populate('assignedMembers', 'firstName lastName email profileImage') 
+      .select('title assignedMembers startDate endDate status'); 
+
+    if (tasks.length === 0) {
+      return res.status(404).json({ success: false, errMsg: "No task(s) for you yet." });
+    }
+
+    res.status(200).json({ success: true, tasks });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, errMsg: "Server error." });
+  }
+};
+
+// employee's get a single task
+export const getSingleTask = async (req, res) => {
+  const { taskId } = req.params; 
+
+  try {
+    const task = await Task.findById(taskId)
+      .populate('assignedMembers', 'firstName lastName profileImage')
+
+    if (!task) {
+      return res.status(404).json({ success: false, errMsg: "Task not found" });
+    }
+
+    const responseTask = {
+      title: task.title,
+      description: task.description,
+      assignedMembers: task.assignedMembers.map(member => ({
+        id: member._id,
+        fullName: `${member.firstName} ${member.lastName}`,
+        profileImage: member.profileImage,
+      })),
+      startDate: task.startDate,
+      endDate: task.endDate,
+      status: task.status,
+    };
+
+    res.status(200).json({ success: true, task: responseTask });
+  } catch (error) {
+    return res.status(500).json({ message: "Server Error", error: error.message });
   }
 };

@@ -131,6 +131,34 @@ export const getEmployeeById = async (req, res) => {
   };
 
 
+  // Get Employee Profile for employees
+export const getEmployeeProfile = async (req, res) => {
+  const { userId } = req.user; 
+
+  try {
+      const employee = await USER.findById({ _id: userId}).select('firstName lastName email profileImage password');
+
+      if (!employee) {
+          return res.status(404).json({ success: false, errMsg: "Employee not found." });
+      }
+
+      res.status(200).json({
+          success: true,
+          employee: {
+              fullName: `${employee.firstName} ${employee.lastName}`,
+              email: employee.email,
+              profileImage: employee.profileImage,
+              password:employee.password
+          }
+      });
+  } catch (error) {
+      console.error(error.message);
+      res.status(500).json({ success: false, errMsg: "Server error." });
+  }
+};
+
+
+
 
 
 

@@ -1,10 +1,33 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
 import "../../styles/Settings.css";
 import Form from "react-bootstrap/Form";
 import profilePic from "../../assets/taskTeamPhotoLady.svg";
 import MyButton from "../../componenets/MyButton";
 import { Link } from "react-router-dom";
+import axios from "axios";
 const EmployeeSettings = () => {
+  const [profile, setProfile] = useState({});
+  const token = localStorage.getItem("hr-token")
+  useEffect(() => {
+    async function userProfile() {
+      try {
+        const req = await axios.get("https://mern-hr-app.onrender.com/api/employee/user/profile", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (req.data.success) {
+          setProfile(req.data.employee);
+        } else {
+          console.error(req.data.errMsg);
+        }
+      } catch (error) {
+        console.error("Error fetching profile:", error);
+      }
+    }
+    userProfile();
+  }, [token]);
   return (
     <>
       <main className="pt-5 settings-wrapper">
@@ -34,6 +57,8 @@ const EmployeeSettings = () => {
                       className="section-form-input"
                       type="text"
                       placeholder="Eggys"
+                      value={profile.fullName || ''}
+                      disabled
                     />
                   </Form.Group>
                   <Form.Group
@@ -44,12 +69,14 @@ const EmployeeSettings = () => {
                       <Form.Label className="settings-form-label">
                         Email Address
                       </Form.Label>
-                      <Link>Change Account Email</Link>
+                      {/* <Link>Change Account Email</Link> */}
                     </div>
                     <Form.Control
                       className="section-form-input"
                       type="email"
                       placeholder="demo@account.com"
+                      value={profile.email || ''}
+                      disabled
                     />
                   </Form.Group>
                 </div>
@@ -62,7 +89,7 @@ const EmployeeSettings = () => {
               </div>
               <div className="col-md-7">
                 <div>
-                  <Form.Group
+                  {/* <Form.Group
                     className="mb-3"
                     controlId="exampleForm.ControlInput1"
                   >
@@ -70,14 +97,15 @@ const EmployeeSettings = () => {
                       <Form.Label className="settings-form-label">
                         Password
                       </Form.Label>
-                      <Link>Change Account Email</Link>
+                      <Link>Change Password</Link>
                     </div>
                     <Form.Control
                       className="section-form-input"
                       type="password"
                       placeholder="xxxxxxxxxxx"
+                      value={profile.password || ''}
                     />
-                  </Form.Group>
+                  </Form.Group> */}
                 </div>
               </div>
             </div>
@@ -89,7 +117,7 @@ const EmployeeSettings = () => {
               <div className="col-md-7">
                 <div>
                   <h6>Profile pic</h6>
-                  <img src={profilePic} alt="profile-pic" />
+                  <img src={profile.profileImage || profilePic} alt="profile-pic" />
                   <p>
                     Your profile pic will be visible next to your name in your
                     profile. Your image should be at least 200x200px and must be
